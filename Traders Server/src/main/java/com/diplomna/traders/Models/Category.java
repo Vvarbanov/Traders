@@ -1,6 +1,7 @@
 package com.diplomna.traders.Models;
 
 import javax.persistence.*;
+import javax.swing.plaf.synth.Region;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,20 +15,30 @@ public class Category {
     @Column(name = "category_name")
     private String name;
 
-    public Category(String name) {
+    @Column(name = "category_level")
+    private int level;
+
+    public Category(String name, int level) {
         this.name = name;
+        this.level = level;
     }
 
-    public Category() {
-    }
+    public Category() {}
 
     public String getName() {
-
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
     }
 
     @ManyToMany

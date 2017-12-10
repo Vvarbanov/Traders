@@ -12,4 +12,17 @@ public class MeasurementUnit {
     @Column(name = "unit_name")
     private String name;
 
+    public MeasurementUnit(String name) {
+        this.name = name;
+    }
+
+    public MeasurementUnit() {}
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }
