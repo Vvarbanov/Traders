@@ -17,6 +17,9 @@ public class Item {
     @Column(name = "item_base_price_per_unit")
     private double basePricePerUnit;
 
+    @Column(name = "item_description")
+    private String description;
+
     @ManyToMany(mappedBy = "items")
     private List<Category> categories = new ArrayList<>();
 
@@ -46,9 +49,18 @@ public class Item {
         return unit;
     }
 
-    public Item(String name, double basePricePerUnit, MeasurementUnit unit) {
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Item(String name, double basePricePerUnit, String description, MeasurementUnit unit) {
         this.name = name;
         this.basePricePerUnit = basePricePerUnit;
+        this.description = description;
         this.unit = unit;
     }
 

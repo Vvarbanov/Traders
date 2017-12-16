@@ -23,10 +23,5 @@ public class MeasurementUnitHandler {
                 measurementUnitRepository.save(measurementUnit);
             }
         }
-
-
-
-
     }
-
 }

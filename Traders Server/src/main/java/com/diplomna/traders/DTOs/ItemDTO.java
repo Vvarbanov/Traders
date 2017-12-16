@@ -5,6 +5,7 @@ import java.util.List;
 public class ItemDTO {
 
     private String name;
+    private String description;
     private double basePricePerUnit;
     private Long unit;
 
@@ -30,5 +31,13 @@ public class ItemDTO {
 
     public void setUnit(Long unit) {
         this.unit = unit;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

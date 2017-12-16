@@ -1,7 +1,6 @@
 package com.diplomna.traders.Models;
 
 import javax.persistence.*;
-import javax.swing.plaf.synth.Region;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -27,6 +27,7 @@ public class ItemHandler {
 
                 Item item = new Item();
                 item.setName(newItem.getName());
+                item.setDescription(newItem.getDescription());
                 item.setBasePricePerUnit(newItem.getBasePricePerUnit());
                 item.setUnit(unit);
 
