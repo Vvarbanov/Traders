@@ -19,7 +19,7 @@ public class MeasurementUnitController {
     private MeasurementUnitHandler measurementUnitHandler;
 
     @RequestMapping("/Create")
-    public ResponseEntity<List<MeasurementUnitDTO>> createItem(@RequestBody List<MeasurementUnitDTO> measurementUnitDTO){
+    public ResponseEntity<List<MeasurementUnitDTO>> createMeasurementUnit(@RequestBody List<MeasurementUnitDTO> measurementUnitDTO){
 
         measurementUnitHandler.createNewMeasurementUnit(measurementUnitDTO);
 

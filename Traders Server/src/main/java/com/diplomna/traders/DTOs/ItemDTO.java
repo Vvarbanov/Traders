@@ -13,31 +13,15 @@ public class ItemDTO {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public double getBasePricePerUnit() {
         return basePricePerUnit;
-    }
-
-    public void setBasePricePerUnit(double basePricePerUnit) {
-        this.basePricePerUnit = basePricePerUnit;
     }
 
     public Long getUnit() {
         return unit;
     }
 
-    public void setUnit(Long unit) {
-        this.unit = unit;
-    }
-
     public String getDescription() {
         return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 }

@@ -10,7 +10,7 @@ public class CategoryDTO {
     }
 
     public int getLevel() {
-        return level;
+       return level;
     }
 
     public void setName(String name) {
@@ -20,5 +20,4 @@ public class CategoryDTO {
     public void setLevel(int level) {
         this.level = level;
     }
-
 }
