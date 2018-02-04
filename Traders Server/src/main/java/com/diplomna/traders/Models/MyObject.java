@@ -17,6 +17,12 @@ public class MyObject {
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<MyProperties> properties = new ArrayList<>();
 
+    public MyObject(String objectName) {
+        this.objectName = objectName;
+    }
+
+    public MyObject() {}
+
     public String getObjectName() {
         return objectName;
     }
@@ -24,12 +30,6 @@ public class MyObject {
     public void setObjectName(String objectName) {
         this.objectName = objectName;
     }
-
-    public MyObject(String objectName) {
-        this.objectName = objectName;
-    }
-
-    public MyObject() {}
 
     public List<MyProperties> getProperties() {
         return properties;
@@ -42,6 +42,4 @@ public class MyObject {
     public long getId() {
         return id;
     }
-
-
 }

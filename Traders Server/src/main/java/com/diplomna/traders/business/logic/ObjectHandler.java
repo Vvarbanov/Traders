@@ -17,9 +17,10 @@ public class ObjectHandler {
 
     @Autowired
     private ObjectRepository objectRepository;
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
-    public void createNewObject(List<ObjectDTO> objectDTOS){
 
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
+    public void createNewObject(List<ObjectDTO> objectDTOS){
         if(objectDTOS!=null){
             for(ObjectDTO objectDTO:objectDTOS){
                 MyObject myObject = new MyObject();
@@ -31,7 +32,7 @@ public class ObjectHandler {
 
     public List<ObjectDTO> getAllObjects(){
         Iterable<MyObject> myObjs=objectRepository.findAll();
-        logger.debug(myObjs.iterator().next().getProperties().get(0).getPropertyName());
+        //logger.debug(myObjs.iterator().next().getProperties().get(0).getPropertyName());
         List<ObjectDTO> result = new ArrayList<>();
         for(MyObject obj:myObjs){
             result.add(new ObjectDTO(obj));

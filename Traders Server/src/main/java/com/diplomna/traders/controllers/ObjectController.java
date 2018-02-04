@@ -14,14 +14,14 @@ import java.util.List;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
-@RequestMapping("/Object/")
+@RequestMapping("objects")
 @RestController
 public class ObjectController {
 
     @Autowired
     private ObjectHandler objectHandler;
 
-    @RequestMapping("/Create")
+    @RequestMapping("/create")
     public ResponseEntity<List<ObjectDTO>> createTV(@RequestBody List<ObjectDTO> objectDTOS){
 
         objectHandler.createNewObject(objectDTOS);
@@ -29,10 +29,10 @@ public class ObjectController {
         return ResponseEntity.ok(objectDTOS);
     }
 
-    @RequestMapping(value = "/GetAll",method = GET)
+    @RequestMapping(value = "/getAll",method = GET)
     public ResponseEntity<Iterable<MyObject>> getAllLaptops(){
-        List<ObjectDTO> laptops = objectHandler.getAllObjects();
+        List<ObjectDTO> objects = objectHandler.getAllObjects();
 
-        return new ResponseEntity(laptops, HttpStatus.OK);
+        return new ResponseEntity(objects, HttpStatus.OK);
     }
 }

@@ -12,19 +12,18 @@ import java.util.List;
 
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
-@RequestMapping("/Category")
+@RequestMapping("/categories")
 @RestController
 public class CategoryController {
 
     @Autowired
     private CategoryHandler catHandler;
 
-    @RequestMapping(value = "/Create",method = POST)
+    @RequestMapping(value = "/create",method = POST)
     public ResponseEntity<List<CategoryDTO>> CreateCategory(@RequestBody List<CategoryDTO> categoryDTO){
 
         catHandler.createNewCategory(categoryDTO);
 
         return ResponseEntity.ok(categoryDTO);
     }
-
 }

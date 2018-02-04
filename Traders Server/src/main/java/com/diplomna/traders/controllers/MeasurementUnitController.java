@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RequestMapping("/MeasurementUnit")
+@RequestMapping("/measurementUnits")
 @RestController
 public class MeasurementUnitController {
 
@@ -18,12 +18,11 @@ public class MeasurementUnitController {
     @Autowired
     private MeasurementUnitHandler measurementUnitHandler;
 
-    @RequestMapping("/Create")
+    @RequestMapping("/create")
     public ResponseEntity<List<MeasurementUnitDTO>> createMeasurementUnit(@RequestBody List<MeasurementUnitDTO> measurementUnitDTO){
 
         measurementUnitHandler.createNewMeasurementUnit(measurementUnitDTO);
 
         return ResponseEntity.ok(measurementUnitDTO);
     }
-
 }

@@ -27,6 +27,17 @@ public class Item {
     @PrimaryKeyJoinColumn
     private MeasurementUnit unit;
 
+    @OneToOne
+    private MyObject object;
+
+    public Item(String name, double basePricePerUnit, String description, MeasurementUnit unit, MyObject object) {
+        this.name = name;
+        this.basePricePerUnit = basePricePerUnit;
+        this.description = description;
+        this.unit = unit;
+        this.object = object;
+    }
+
     public Item() {}
 
     public String getName() {
@@ -49,22 +60,23 @@ public class Item {
         return unit;
     }
 
+    public void setUnit(MeasurementUnit unit) {
+        this.unit = unit;
+    }
+
+    public MyObject getObject(){
+        return object;
+    }
+
+    public void setObject(MyObject object) {
+        this.object = object;
+    }
+
     public String getDescription() {
         return description;
     }
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public Item(String name, double basePricePerUnit, String description, MeasurementUnit unit) {
-        this.name = name;
-        this.basePricePerUnit = basePricePerUnit;
-        this.description = description;
-        this.unit = unit;
-    }
-
-    public void setUnit(MeasurementUnit unit) {
-        this.unit = unit;
     }
 }

@@ -1,10 +1,21 @@
 package com.diplomna.traders.Models;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import javax.persistence.*;
+import java.util.Collection;
+import java.util.Collections;
 
 @Entity
-public class User {
-
+public class User implements UserDetails {
+    
+    //username: valcho, password: 123456
+    public User(String username, String password) {
+        this.username=username;
+        this.password=password;
+    }
+    
     public enum AccountType{
         DEALER,
         CUSTOMER
@@ -17,7 +28,7 @@ public class User {
     @Column(name = "user_name")
     private String username;
 
-    @Column(name = "user_password")
+    @Column(name = "user_password",length = 255)
     private String password;
 
     @Column(name = "user_email")
@@ -27,6 +38,7 @@ public class User {
     private String phone;
 
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private AccountType accountType;
 
     public User(String username, String password, String email, String phone, AccountType accountType) {
@@ -39,14 +51,41 @@ public class User {
 
     public User() {}
 
+    @Override
     public String getUsername() {
         return username;
     }
-
+    
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+    
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+    
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+    
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+    
     public void setUsername(String username) {
         this.username = username;
     }
-
+    
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return Collections.EMPTY_LIST;
+    }
+    
+    @Override
     public String getPassword() {
         return password;
     }

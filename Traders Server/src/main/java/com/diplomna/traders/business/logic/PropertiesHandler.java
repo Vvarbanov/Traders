@@ -22,15 +22,15 @@ public class PropertiesHandler {
     private ObjectRepository objectRepository;
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
-    public void createNewProperty(List<PropertiesDTO> propertiesDTOS){
 
+    public void createNewProperty(List<PropertiesDTO> propertiesDTOS){
         if(propertiesDTOS!=null){
             for(PropertiesDTO propertiesDTO:propertiesDTOS){
                 MyProperties newProperty = new MyProperties();
                 newProperty.setPropertyName(propertiesDTO.getPropertyName());
                 newProperty.setValue(propertiesDTO.getValue());
                 MyObject myObject = objectRepository.findOne(propertiesDTO.getObjectId());
-                logger.debug("Alex "+myObject.getObjectName());
+                logger.debug("logging "+myObject.getObjectName());
                 newProperty.getMyObjects().add(myObject);
                 myObject.getProperties().add(newProperty);
                 propertiesRepository.save(newProperty);

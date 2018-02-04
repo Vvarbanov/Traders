@@ -5,6 +5,13 @@ public class CategoryDTO {
     private String name;
     private int level;
 
+    public CategoryDTO(String name, int level) {
+        this.name = name;
+        this.level = level;
+    }
+
+    public CategoryDTO() {}
+
     public String getName() {
         return name;
     }

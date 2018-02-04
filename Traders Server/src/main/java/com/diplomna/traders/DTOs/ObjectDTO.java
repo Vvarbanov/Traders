@@ -10,7 +10,7 @@ import java.util.List;
 public class ObjectDTO{
 
     private String objectName;
-    private List<PropertiesDTO> props=new ArrayList<>();
+    private List<PropertiesDTO> props = new ArrayList<>();
     public String getObjectName() {
         return objectName;
     }
@@ -21,7 +21,6 @@ public class ObjectDTO{
             this.props.add(new PropertiesDTO(myProp));
         }
     }
-
 
     public ObjectDTO(){}
 

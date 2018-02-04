@@ -1,12 +1,12 @@
 package com.diplomna.traders.repository;
 
-import com.diplomna.traders.Models.User;
+import com.diplomna.traders.Models.Storage;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepository extends CrudRepository<User,Long> {
+public interface StorageRepository extends CrudRepository<Storage, Long> {
 
-    User findByUsername(String username);
+
 
 }

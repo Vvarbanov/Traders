@@ -17,7 +17,16 @@ public class MyProperties {
     @Column(name = "value")
     private String value;
 
+    @ManyToMany(mappedBy = "properties",cascade = CascadeType.PERSIST,fetch = FetchType.LAZY)
+    private List<MyObject> myObjects = new ArrayList<>();
 
+    public MyProperties(String propertyName, String value, long objectId) {
+        this.propertyName = propertyName;
+        this.value = value;
+
+    }
+
+    public MyProperties() {}
 
     public String getPropertyName() {
         return propertyName;
@@ -35,19 +44,6 @@ public class MyProperties {
         this.value = value;
     }
 
-
-
-    public MyProperties(String propertyName, String value, long objectId) {
-        this.propertyName = propertyName;
-        this.value = value;
-
-    }
-
-    public MyProperties() {}
-
-    @ManyToMany(mappedBy = "properties",cascade = CascadeType.PERSIST,fetch = FetchType.LAZY)
-    private List<MyObject> myObjects = new ArrayList<>();
-
     public List<MyObject> getMyObjects() {
         return myObjects;
     }
@@ -59,6 +55,4 @@ public class MyProperties {
     public long getId() {
         return id;
     }
-
-
 }

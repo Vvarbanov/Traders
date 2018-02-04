@@ -10,19 +10,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RequestMapping("/Item")
+@RequestMapping("/items")
 @RestController
 public class ItemController {
 
     @Autowired
     private ItemHandler itemHandler;
 
-    @RequestMapping("/Create")
+    @RequestMapping("/create")
     public ResponseEntity<List<ItemDTO>> createItem(@RequestBody List<ItemDTO> itemDTO){
 
         itemHandler.createNewItem(itemDTO);
 
         return ResponseEntity.ok(itemDTO);
     }
-
 }

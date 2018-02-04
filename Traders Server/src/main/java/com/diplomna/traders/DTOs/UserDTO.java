@@ -10,6 +10,16 @@ public class UserDTO {
     private String phone;
     private User.AccountType accountType;
 
+    public UserDTO(String username, String password, String email, String phone, User.AccountType accountType) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.phone = phone;
+        this.accountType = accountType;
+    }
+
+    public UserDTO() {}
+
     public String getPassword() {
         return password;
     }

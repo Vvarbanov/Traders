@@ -8,21 +8,18 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
-@RequestMapping("/User")
+@RequestMapping("/users")
 @RestController
 public class UserController {
 
     @Autowired
     private UserHandler userHandler;
 
-    @RequestMapping("/Create")
-    public ResponseEntity<List<UserDTO>> createUser(@RequestBody List<UserDTO> userDTOS){
-
-        userHandler.createNewUser(userDTOS);
+    @RequestMapping("/register")
+    public ResponseEntity<UserDTO> createUser(@RequestBody UserDTO userDTOS) throws Exception {
+    
+        userHandler.registerNewUserAccount(userDTOS);
 
         return ResponseEntity.ok(userDTOS);
     }
-
 }

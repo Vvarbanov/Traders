@@ -17,6 +17,9 @@ public class Category {
     @Column(name = "category_level")
     private int level;
 
+    @ManyToMany
+    private List<Item> items = new ArrayList<>();
+
     public Category(String name, int level) {
         this.name = name;
         this.level = level;
@@ -39,8 +42,4 @@ public class Category {
     public void setLevel(int level) {
         this.level = level;
     }
-
-    @ManyToMany
-    private List<Item> items = new ArrayList<>();
-
 }

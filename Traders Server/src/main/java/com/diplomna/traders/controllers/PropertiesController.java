@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RequestMapping("/Properties")
+@RequestMapping("/properties")
 @RestController
 public class PropertiesController {
 
     @Autowired
     private PropertiesHandler propertiesHandler;
 
-    @RequestMapping("/Create")
+    @RequestMapping("/create")
     public ResponseEntity<List<PropertiesDTO>> createMeasurementUnit(@RequestBody List<PropertiesDTO> propertiesDTOS) {
 
         propertiesHandler.createNewProperty(propertiesDTOS);
