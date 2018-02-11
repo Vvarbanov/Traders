@@ -1,6 +1,6 @@
 package com.diplomna.traders.controllers;
 
-import com.diplomna.traders.DTOs.CategoryDTO;
+import com.diplomna.traders.dtos.CategoryDto;
 import com.diplomna.traders.business.logic.CategoryHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,10 +20,10 @@ public class CategoryController {
     private CategoryHandler catHandler;
 
     @RequestMapping(value = "/create",method = POST)
-    public ResponseEntity<List<CategoryDTO>> CreateCategory(@RequestBody List<CategoryDTO> categoryDTO){
+    public ResponseEntity<List<CategoryDto>> CreateCategory(@RequestBody List<CategoryDto> categoryDto){
 
-        catHandler.createNewCategory(categoryDTO);
+        catHandler.createNewCategory(categoryDto);
 
-        return ResponseEntity.ok(categoryDTO);
+        return ResponseEntity.ok(categoryDto);
     }
 }

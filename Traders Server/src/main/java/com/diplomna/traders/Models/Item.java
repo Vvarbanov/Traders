@@ -1,4 +1,4 @@
-package com.diplomna.traders.Models;
+package com.diplomna.traders.models;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -78,5 +78,9 @@ public class Item {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+    
+    public long getId() {
+        return id;
     }
 }

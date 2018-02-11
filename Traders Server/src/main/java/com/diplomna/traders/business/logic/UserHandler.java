@@ -1,8 +1,7 @@
 package com.diplomna.traders.business.logic;
 
-
-import com.diplomna.traders.DTOs.UserDTO;
-import com.diplomna.traders.Models.User;
+import com.diplomna.traders.dtos.UserDto;
+import com.diplomna.traders.models.User;
 import com.diplomna.traders.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,15 +19,22 @@ public class UserHandler implements UserDetailsService{
     @Autowired
     private UserRepository userRepo;
     
-    public User registerNewUserAccount(UserDTO accountDto) throws Exception{
-        //TODO: sloji proverki dali ne exists username ili mail
-        User newUser = new User(accountDto.getUsername(),passwordEncoder.encode(accountDto.getPassword()));
-        userRepo.save(newUser);
-        return newUser;
+    public User registerNewUserAccount(UserDto accountDto) throws Exception{
+        if(loadUserByUsername(accountDto.getUsername()) == null) {
+            User newUser = new User(accountDto.getUsername(), passwordEncoder.encode(accountDto.getPassword()), accountDto.getEmail(), accountDto.getPhone(), accountDto.getAccountType());
+            userRepo.save(newUser);
+            return newUser;
+        }else{
+            return null;
+        }
     }
     
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userRepo.findByUsername(username);
+        try {
+            return userRepo.findByUsername(username);
+        }catch(UsernameNotFoundException e){
+            return null;
+        }
     }
 }

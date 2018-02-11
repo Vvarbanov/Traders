@@ -1,4 +1,4 @@
-package com.diplomna.traders.Models;
+package com.diplomna.traders.models;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -41,5 +41,9 @@ public class Category {
 
     public void setLevel(int level) {
         this.level = level;
+    }
+    
+    public long getId() {
+        return id;
     }
 }

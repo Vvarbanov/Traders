@@ -1,4 +1,4 @@
-package com.diplomna.traders.Models;
+package com.diplomna.traders.models;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,10 +11,6 @@ import java.util.Collections;
 public class User implements UserDetails {
     
     //username: valcho, password: 123456
-    public User(String username, String password) {
-        this.username=username;
-        this.password=password;
-    }
     
     public enum AccountType{
         DEALER,
@@ -116,5 +112,9 @@ public class User implements UserDetails {
 
     public void setAccountType(AccountType accountType) {
         this.accountType = accountType;
+    }
+    
+    public long getId() {
+        return id;
     }
 }

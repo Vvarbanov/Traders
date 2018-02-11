@@ -1,4 +1,4 @@
-package com.diplomna.traders.Security;
+package com.diplomna.traders.security;
 
 import com.diplomna.traders.business.logic.UserHandler;
 import org.springframework.beans.factory.annotation.Autowired;

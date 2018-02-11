@@ -1,16 +1,16 @@
-package com.diplomna.traders.DTOs;
+package com.diplomna.traders.dtos;
 
-public class CategoryDTO {
+public class CategoryDto {
 
     private String name;
     private int level;
 
-    public CategoryDTO(String name, int level) {
+    public CategoryDto(String name, int level) {
         this.name = name;
         this.level = level;
     }
 
-    public CategoryDTO() {}
+    public CategoryDto() {}
 
     public String getName() {
         return name;

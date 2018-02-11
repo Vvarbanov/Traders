@@ -1,6 +1,6 @@
-package com.diplomna.traders.DTOs;
+package com.diplomna.traders.dtos;
 
-public class StorageDTO {
+public class StorageDto {
     
     private int quantity;
     private double priceMultiplier;
@@ -9,7 +9,7 @@ public class StorageDTO {
     private Long item;
     private byte[] image;
     
-    public StorageDTO(int quantity, double priceMultiplier, String QRHash, Long dealer, Long item, byte[] image) {
+    public StorageDto(int quantity, double priceMultiplier, String QRHash, Long dealer, Long item, byte[] image) {
         this.quantity = quantity;
         this.priceMultiplier = priceMultiplier;
         this.QRHash = QRHash;
@@ -18,7 +18,7 @@ public class StorageDTO {
         this.image = image;
     }
     
-    public StorageDTO() {}
+    public StorageDto() {}
     
     public int getQuantity() {
         return quantity;

@@ -1,6 +1,6 @@
 package com.diplomna.traders.controllers;
 
-import com.diplomna.traders.DTOs.StorageDTO;
+import com.diplomna.traders.dtos.StorageDto;
 import com.diplomna.traders.business.logic.StorageHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,11 +18,11 @@ public class StorageController {
     private StorageHandler storageHandler;
     
     @RequestMapping("/create")
-    public ResponseEntity<List<StorageDTO>> createStorage(@RequestBody List<StorageDTO> storageDTOS){
+    public ResponseEntity<List<StorageDto>> createStorage(@RequestBody List<StorageDto> storageDtos){
         
-        storageHandler.createNewStorage(storageDTOS);
+        storageHandler.createNewStorage(storageDtos);
         
-        return ResponseEntity.ok(storageDTOS);
+        return ResponseEntity.ok(storageDtos);
     }
 
 }

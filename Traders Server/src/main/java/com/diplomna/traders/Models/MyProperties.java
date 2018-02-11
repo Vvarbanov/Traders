@@ -1,4 +1,4 @@
-package com.diplomna.traders.Models;
+package com.diplomna.traders.models;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -20,10 +20,9 @@ public class MyProperties {
     @ManyToMany(mappedBy = "properties",cascade = CascadeType.PERSIST,fetch = FetchType.LAZY)
     private List<MyObject> myObjects = new ArrayList<>();
 
-    public MyProperties(String propertyName, String value, long objectId) {
+    public MyProperties(String propertyName, String value) {
         this.propertyName = propertyName;
         this.value = value;
-
     }
 
     public MyProperties() {}

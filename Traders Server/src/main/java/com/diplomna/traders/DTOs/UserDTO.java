@@ -1,8 +1,8 @@
-package com.diplomna.traders.DTOs;
+package com.diplomna.traders.dtos;
 
-import com.diplomna.traders.Models.User;
+import com.diplomna.traders.models.User;
 
-public class UserDTO {
+public class UserDto {
 
     private String username;
     private String password;
@@ -10,7 +10,7 @@ public class UserDTO {
     private String phone;
     private User.AccountType accountType;
 
-    public UserDTO(String username, String password, String email, String phone, User.AccountType accountType) {
+    public UserDto(String username, String password, String email, String phone, User.AccountType accountType) {
         this.username = username;
         this.password = password;
         this.email = email;
@@ -18,7 +18,7 @@ public class UserDTO {
         this.accountType = accountType;
     }
 
-    public UserDTO() {}
+    public UserDto() {}
 
     public String getPassword() {
         return password;

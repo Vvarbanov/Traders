@@ -1,6 +1,6 @@
-package com.diplomna.traders.DTOs;
+package com.diplomna.traders.dtos;
 
-public class ItemDTO {
+public class ItemDto {
 
     private String name;
     private String description;
@@ -8,7 +8,7 @@ public class ItemDTO {
     private Long unit;
     private Long object;
 
-    public ItemDTO(String name, String description, double basePricePerUnit, Long unit, Long object) {
+    public ItemDto(String name, String description, double basePricePerUnit, Long unit, Long object) {
         this.name = name;
         this.description = description;
         this.basePricePerUnit = basePricePerUnit;
@@ -16,7 +16,7 @@ public class ItemDTO {
         this.object = object;
     }
 
-    public ItemDTO() { }
+    public ItemDto() { }
 
     public String getName() {
         return name;

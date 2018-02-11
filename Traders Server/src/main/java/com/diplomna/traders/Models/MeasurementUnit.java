@@ -1,4 +1,4 @@
-package com.diplomna.traders.Models;
+package com.diplomna.traders.models;
 
 import javax.persistence.*;
 
@@ -24,5 +24,9 @@ public class MeasurementUnit {
 
     public void setName(String name) {
         this.name = name;
+    }
+    
+    public long getId() {
+        return id;
     }
 }

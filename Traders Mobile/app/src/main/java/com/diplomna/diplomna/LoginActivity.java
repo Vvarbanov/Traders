@@ -38,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
         loginButton = findViewById(R.id.loginButton);
         registerButton = findViewById(R.id.registerButton);
         txtPass = findViewById(R.id.txtPassword);
-        txtEmail = findViewById(R.id.txtEmail);
+        txtEmail = findViewById(R.id.textEmail);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,11 +47,11 @@ public class LoginActivity extends AppCompatActivity {
                 String emailString = getTxtEmail().getText().toString();
                 //login check
                 //if(login){
-                    if (userType.equals(User.ACCOUNT_TYPE.TRADER)) {
-                        Intent intent = new Intent(LoginActivity.this, MainActivityTrader.class);
+                    if (userType.equals(User.ACCOUNT_TYPE.DEALER)) {
+                        Intent intent = new Intent(LoginActivity.this, MainActivityDealer.class);
                         startActivity(intent);
-                    } else if (userType.equals(User.ACCOUNT_TYPE.BUYER)) {
-                        Intent intent = new Intent(LoginActivity.this, MainActivityBuyer.class);
+                    } else if (userType.equals(User.ACCOUNT_TYPE.CUSTOMER)) {
+                        Intent intent = new Intent(LoginActivity.this, MainActivityCustomer.class);
                         startActivity(intent);
                     }
                 //}

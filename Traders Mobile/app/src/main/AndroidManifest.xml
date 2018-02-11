@@ -10,9 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".MainActivityTrader" />
+        <activity android:name=".MainActivityDealer" />
         <activity android:name=".LoginActivity" />
-        <activity android:name=".MainActivityBuyer"></activity>
+        <activity android:name=".MainActivityCustomer" />
+        <activity android:name=".ProfileActivity"></activity>
     </application>
 
 </manifest>

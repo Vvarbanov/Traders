@@ -1,4 +1,4 @@
-package com.diplomna.traders.Models;
+package com.diplomna.traders.models;
 
 import javax.persistence.*;
 
@@ -84,5 +84,9 @@ public class Storage {
     
     public void setImage(byte[] image) {
         this.image = image;
+    }
+    
+    public long getId() {
+        return id;
     }
 }
