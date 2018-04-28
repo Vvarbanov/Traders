@@ -13,7 +13,10 @@
         <activity android:name=".MainActivityDealer" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".MainActivityCustomer" />
-        <activity android:name=".ProfileActivity"></activity>
+        <activity android:name=".ProfileActivity" />
+        <activity android:name=".SingleListingRow" />
+        <activity android:name=".Listings" />
+        <activity android:name=".CardViewListingActivity"></activity>
     </application>
 
 </manifest>
