@@ -35,7 +35,7 @@ public class StorageHandler {
     
                 storage.setImage(storageDto.getImage());
                 storage.setPriceMultiplier(storageDto.getPriceMultiplier());
-                storage.setQRHash(storageDto.getQRHash());
+                storage.setQrHash(storageDto.getQRHash());
                 storage.setQuantity(storageDto.getQuantity());
                 storage.setItem(item);
                 storage.setDealer(dealer);

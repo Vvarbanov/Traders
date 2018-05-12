@@ -16,7 +16,7 @@ public class Storage {
     private double priceMultiplier;
     
     @Column
-    private String QRHash;
+    private String qrHash;
     
     @OneToOne
     private User dealer;
@@ -25,12 +25,12 @@ public class Storage {
     private Item item;
     
     @Column(length=100000)
-    private byte[] image;
+    private byte[] image;   
     
-    public Storage(int quantity, double priceMultiplier, String QRHash, User dealer, Item item, byte[] image) {
+    public Storage(int quantity, double priceMultiplier, String qrHash, User dealer, Item item, byte[] image) {
         this.quantity = quantity;
         this.priceMultiplier = priceMultiplier;
-        this.QRHash = QRHash;
+        this.qrHash = qrHash;
         this.dealer = dealer;
         this.item = item;
         this.image = image;
@@ -54,12 +54,12 @@ public class Storage {
         this.priceMultiplier = priceMultiplier;
     }
     
-    public String getQRHash() {
-        return QRHash;
+    public String getQrHash() {
+        return qrHash;
     }
     
-    public void setQRHash(String QRHash) {
-        this.QRHash = QRHash;
+    public void setQrHash(String qrHash) {
+        this.qrHash = qrHash;
     }
     
     public User getDealer() {
