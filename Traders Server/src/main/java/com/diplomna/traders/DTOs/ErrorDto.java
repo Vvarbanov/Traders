@@ -1,7 +1,7 @@
-package com.diplomna.traders.dtos;
+package com.diplomna.traders.DTOs;
 
 
-public class ErrorDto {
+public class ErrorDTO {
     private String Message;
     
     public String getMessage() {

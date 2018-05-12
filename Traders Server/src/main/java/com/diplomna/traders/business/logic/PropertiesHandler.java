@@ -1,10 +1,10 @@
-package com.diplomna.traders.business.logic;
+package com.diplomna.traders.business.Logic;
 
-import com.diplomna.traders.dtos.PropertiesDto;
-import com.diplomna.traders.models.MyObject;
-import com.diplomna.traders.models.MyProperties;
-import com.diplomna.traders.repository.ObjectRepository;
-import com.diplomna.traders.repository.PropertiesRepository;
+import com.diplomna.traders.DTOs.PropertiesDTO;
+import com.diplomna.traders.Models.MyObject;
+import com.diplomna.traders.Models.MyProperties;
+import com.diplomna.traders.Repository.ObjectRepository;
+import com.diplomna.traders.Repository.PropertiesRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,13 +23,13 @@ public class PropertiesHandler {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    public void createNewProperty(List<PropertiesDto> propertiesDtos){
-        if(propertiesDtos !=null){
-            for(PropertiesDto propertiesDto : propertiesDtos){
+    public void createNewProperty(List<PropertiesDTO> propertiesDTOs){
+        if(propertiesDTOs !=null){
+            for(PropertiesDTO propertiesDTO : propertiesDTOs){
                 MyProperties newProperty = new MyProperties();
-                newProperty.setPropertyName(propertiesDto.getPropertyName());
-                newProperty.setValue(propertiesDto.getValue());
-                MyObject myObject = objectRepository.findOne(propertiesDto.getObjectId());
+                newProperty.setPropertyName(propertiesDTO.getPropertyName());
+                newProperty.setValue(propertiesDTO.getValue());
+                MyObject myObject = objectRepository.findOne(propertiesDTO.getObjectId());
                 //logger.debug("logging "+myObject.getObjectName());
                 newProperty.getMyObjects().add(myObject);
                 myObject.getProperties().add(newProperty);

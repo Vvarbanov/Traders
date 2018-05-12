@@ -1,9 +1,9 @@
-package com.diplomna.traders.controllers;
+package com.diplomna.traders.Controllers;
 
-import com.diplomna.traders.dtos.ErrorDto;
-import com.diplomna.traders.dtos.UserDto;
-import com.diplomna.traders.business.logic.UserHandler;
-import com.diplomna.traders.exceptions.AbstractRestException;
+import com.diplomna.traders.DTOs.ErrorDTO;
+import com.diplomna.traders.DTOs.UserDTO;
+import com.diplomna.traders.business.Logic.UserHandler;
+import com.diplomna.traders.Exceptions.AbstractRestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +19,7 @@ public class UserController {
     private UserHandler userHandler;
 
     @RequestMapping("/register")
-    public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDTOS) throws Exception {
+    public ResponseEntity<UserDTO> createUser(@RequestBody UserDTO userDTOS) throws Exception {
         try {
             if (userHandler.registerNewUserAccount(userDTOS) != null) {
                 return ResponseEntity.ok(userDTOS);
@@ -27,11 +27,11 @@ public class UserController {
                 throw new AbstractRestException("User already exists");
             }
         } catch (AbstractRestException e) {
-            ErrorDto err = new ErrorDto();
+            ErrorDTO err = new ErrorDTO();
             err.setMessage(e.getMessage());
             return new ResponseEntity(err,HttpStatus.INTERNAL_SERVER_ERROR);
         }catch (Exception e){
-            ErrorDto err = new ErrorDto();
+            ErrorDTO err = new ErrorDTO();
             err.setMessage(e.getMessage());
             return new ResponseEntity(err,HttpStatus.INTERNAL_SERVER_ERROR);
         }

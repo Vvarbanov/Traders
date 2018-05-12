@@ -1,8 +1,8 @@
-package com.diplomna.traders.business.logic;
+package com.diplomna.traders.business.Logic;
 
-import com.diplomna.traders.dtos.UserDto;
-import com.diplomna.traders.models.User;
-import com.diplomna.traders.repository.UserRepository;
+import com.diplomna.traders.DTOs.UserDTO;
+import com.diplomna.traders.Models.User;
+import com.diplomna.traders.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -19,7 +19,7 @@ public class UserHandler implements UserDetailsService{
     @Autowired
     private UserRepository userRepo;
     
-    public User registerNewUserAccount(UserDto accountDto) throws Exception{
+    public User registerNewUserAccount(UserDTO accountDto) throws Exception{
         if(loadUserByUsername(accountDto.getUsername()) == null) {
             User newUser = new User(accountDto.getUsername(), passwordEncoder.encode(accountDto.getPassword()), accountDto.getEmail(), accountDto.getPhone(), accountDto.getAccountType());
             userRepo.save(newUser);

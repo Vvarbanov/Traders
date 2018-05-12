@@ -1,12 +1,12 @@
-package com.diplomna.traders.business.logic;
+package com.diplomna.traders.business.Logic;
 
-import com.diplomna.traders.dtos.ItemDto;
-import com.diplomna.traders.models.Item;
-import com.diplomna.traders.models.MeasurementUnit;
-import com.diplomna.traders.models.MyObject;
-import com.diplomna.traders.repository.ItemRepository;
-import com.diplomna.traders.repository.MeasurementUnitRepository;
-import com.diplomna.traders.repository.ObjectRepository;
+import com.diplomna.traders.DTOs.ItemDTO;
+import com.diplomna.traders.Models.Item;
+import com.diplomna.traders.Models.MeasurementUnit;
+import com.diplomna.traders.Models.MyObject;
+import com.diplomna.traders.Repository.ItemRepository;
+import com.diplomna.traders.Repository.MeasurementUnitRepository;
+import com.diplomna.traders.Repository.ObjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -25,10 +25,10 @@ public class ItemHandler {
     @Autowired
     private ObjectRepository objectRepository;
 
-    public void createNewItem(List<ItemDto> newItems){
+    public void createNewItem(List<ItemDTO> newItems){
 
         if(newItems != null) {
-            for (ItemDto newItem:newItems) {
+            for (ItemDTO newItem:newItems) {
                 MeasurementUnit unit = measurementUnitRepository.findOne(newItem.getUnit());
                 MyObject object = objectRepository.findOne(newItem.getObject());
 
@@ -44,11 +44,11 @@ public class ItemHandler {
         }
     }
     
-    public List<ItemDto> getAllItems(){
+    public List<ItemDTO> getAllItems(){
         Iterable<Item> items = itemRepository.findAll();
-        List<ItemDto> result = new ArrayList<>();
+        List<ItemDTO> result = new ArrayList<>();
         for(Item item:items){
-            result.add(new ItemDto(item.getName(), item.getDescription(), item.getBasePricePerUnit(), item.getUnit().getId(), item.getObject().getId()));
+            result.add(new ItemDTO(item.getName(), item.getDescription(), item.getBasePricePerUnit(), item.getUnit().getId(), item.getObject().getId()));
         }
         return result;
     }

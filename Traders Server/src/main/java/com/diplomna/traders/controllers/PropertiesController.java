@@ -1,7 +1,7 @@
-package com.diplomna.traders.controllers;
+package com.diplomna.traders.Controllers;
 
-import com.diplomna.traders.dtos.PropertiesDto;
-import com.diplomna.traders.business.logic.PropertiesHandler;
+import com.diplomna.traders.DTOs.PropertiesDTO;
+import com.diplomna.traders.business.Logic.PropertiesHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,10 +20,10 @@ public class PropertiesController {
     private PropertiesHandler propertiesHandler;
 
     @RequestMapping(value = "/create", method = POST)
-    public ResponseEntity<List<PropertiesDto>> createMeasurementUnit(@RequestBody List<PropertiesDto> propertiesDtos) {
+    public ResponseEntity<List<PropertiesDTO>> createMeasurementUnit(@RequestBody List<PropertiesDTO> propertiesDTOs) {
 
-        propertiesHandler.createNewProperty(propertiesDtos);
+        propertiesHandler.createNewProperty(propertiesDTOs);
 
-        return ResponseEntity.ok(propertiesDtos);
+        return ResponseEntity.ok(propertiesDTOs);
     }
 }

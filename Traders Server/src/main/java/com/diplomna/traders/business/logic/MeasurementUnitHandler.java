@@ -1,8 +1,8 @@
-package com.diplomna.traders.business.logic;
+package com.diplomna.traders.business.Logic;
 
-import com.diplomna.traders.dtos.MeasurementUnitDto;
-import com.diplomna.traders.models.MeasurementUnit;
-import com.diplomna.traders.repository.MeasurementUnitRepository;
+import com.diplomna.traders.DTOs.MeasurementUnitDTO;
+import com.diplomna.traders.Models.MeasurementUnit;
+import com.diplomna.traders.Repository.MeasurementUnitRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,22 +15,22 @@ public class MeasurementUnitHandler {
     @Autowired
     private MeasurementUnitRepository measurementUnitRepository;
 
-    public void createNewMeasurementUnit(List<MeasurementUnitDto> measurementUnitDtos){
+    public void createNewMeasurementUnit(List<MeasurementUnitDTO> measurementUnitDTOs){
 
-        if(measurementUnitDtos !=null){
-            for(MeasurementUnitDto measurementUnitDto: measurementUnitDtos){
+        if(measurementUnitDTOs !=null){
+            for(MeasurementUnitDTO measurementUnitDTO : measurementUnitDTOs){
                 MeasurementUnit measurementUnit =  new MeasurementUnit();
-                measurementUnit.setName(measurementUnitDto.getName());
+                measurementUnit.setName(measurementUnitDTO.getName());
                 measurementUnitRepository.save(measurementUnit);
             }
         }
     }
     
-    public List<MeasurementUnitDto> getAllMeasurementUnits(){
+    public List<MeasurementUnitDTO> getAllMeasurementUnits(){
         Iterable<MeasurementUnit> units = measurementUnitRepository.findAll();
-        List<MeasurementUnitDto> result = new ArrayList<>();
+        List<MeasurementUnitDTO> result = new ArrayList<>();
         for(MeasurementUnit unit:units){
-            result.add(new MeasurementUnitDto(unit.getName()));
+            result.add(new MeasurementUnitDTO(unit.getName()));
         }
         return result;
     }

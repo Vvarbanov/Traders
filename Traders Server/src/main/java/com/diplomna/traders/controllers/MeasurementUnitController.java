@@ -1,8 +1,8 @@
-package com.diplomna.traders.controllers;
+package com.diplomna.traders.Controllers;
 
-import com.diplomna.traders.dtos.MeasurementUnitDto;
-import com.diplomna.traders.business.logic.MeasurementUnitHandler;
-import com.diplomna.traders.models.MeasurementUnit;
+import com.diplomna.traders.DTOs.MeasurementUnitDTO;
+import com.diplomna.traders.business.Logic.MeasurementUnitHandler;
+import com.diplomna.traders.Models.MeasurementUnit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,16 +23,16 @@ public class MeasurementUnitController {
     private MeasurementUnitHandler measurementUnitHandler;
 
     @RequestMapping(value = "/create", method = POST)
-    public ResponseEntity<List<MeasurementUnitDto>> createMeasurementUnit(@RequestBody List<MeasurementUnitDto> measurementUnitDto){
+    public ResponseEntity<List<MeasurementUnitDTO>> createMeasurementUnit(@RequestBody List<MeasurementUnitDTO> measurementUnitDTO){
 
-        measurementUnitHandler.createNewMeasurementUnit(measurementUnitDto);
+        measurementUnitHandler.createNewMeasurementUnit(measurementUnitDTO);
 
-        return ResponseEntity.ok(measurementUnitDto);
+        return ResponseEntity.ok(measurementUnitDTO);
     }
     
     @RequestMapping(value = "/getAll", method = GET)
     public ResponseEntity<Iterable<MeasurementUnit>> getAllMeasurementsUnits(){
-        List<MeasurementUnitDto> objects = measurementUnitHandler.getAllMeasurementUnits();
+        List<MeasurementUnitDTO> objects = measurementUnitHandler.getAllMeasurementUnits();
         
         return new ResponseEntity(objects, HttpStatus.OK);
     }

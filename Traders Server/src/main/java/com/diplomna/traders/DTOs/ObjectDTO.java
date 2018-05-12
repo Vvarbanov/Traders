@@ -1,34 +1,34 @@
-package com.diplomna.traders.dtos;
+package com.diplomna.traders.DTOs;
 
 
-import com.diplomna.traders.models.MyObject;
-import com.diplomna.traders.models.MyProperties;
+import com.diplomna.traders.Models.MyObject;
+import com.diplomna.traders.Models.MyProperties;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ObjectDto {
+public class ObjectDTO {
 
     private String objectName;
-    private List<PropertiesDto> props = new ArrayList<>();
+    private List<PropertiesDTO> props = new ArrayList<>();
     public String getObjectName() {
         return objectName;
     }
 
-    public ObjectDto(MyObject obj){
+    public ObjectDTO(MyObject obj){
         this.objectName=obj.getObjectName();
         for(MyProperties myProp:obj.getProperties()){
-            this.props.add(new PropertiesDto(myProp));
+            this.props.add(new PropertiesDTO(myProp));
         }
     }
 
-    public ObjectDto(){}
+    public ObjectDTO(){}
 
-    public List<PropertiesDto> getProps() {
+    public List<PropertiesDTO> getProps() {
         return props;
     }
 
-    public void setProps(List<PropertiesDto> props) {
+    public void setProps(List<PropertiesDTO> props) {
         this.props = props;
     }
 }

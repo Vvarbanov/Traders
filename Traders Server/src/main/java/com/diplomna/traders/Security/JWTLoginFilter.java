@@ -1,4 +1,4 @@
-package com.diplomna.traders.security;
+package com.diplomna.traders.Security;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -8,7 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.diplomna.traders.dtos.UserDto;
+import com.diplomna.traders.DTOs.UserDTO;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -28,7 +28,7 @@ public class JWTLoginFilter extends AbstractAuthenticationProcessingFilter {
     @Override
     public Authentication attemptAuthentication(HttpServletRequest req, HttpServletResponse res)
             throws AuthenticationException, IOException, ServletException {
-        UserDto creds = new ObjectMapper().readValue(req.getInputStream(), UserDto.class);
+        UserDTO creds = new ObjectMapper().readValue(req.getInputStream(), UserDTO.class);
         return this.getAuthenticationManager().authenticate(
                 new UsernamePasswordAuthenticationToken(creds.getUsername(), creds.getPassword(), Collections.emptyList()));
     }

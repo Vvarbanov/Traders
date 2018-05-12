@@ -1,12 +1,12 @@
-package com.diplomna.traders.business.logic;
+package com.diplomna.traders.business.Logic;
 
-import com.diplomna.traders.dtos.StorageDto;
-import com.diplomna.traders.models.Item;
-import com.diplomna.traders.models.Storage;
-import com.diplomna.traders.models.User;
-import com.diplomna.traders.repository.ItemRepository;
-import com.diplomna.traders.repository.StorageRepository;
-import com.diplomna.traders.repository.UserRepository;
+import com.diplomna.traders.DTOs.StorageDTO;
+import com.diplomna.traders.Models.Item;
+import com.diplomna.traders.Models.Storage;
+import com.diplomna.traders.Models.User;
+import com.diplomna.traders.Repository.ItemRepository;
+import com.diplomna.traders.Repository.StorageRepository;
+import com.diplomna.traders.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -24,19 +24,19 @@ public class StorageHandler {
     @Autowired
     private UserRepository userRepository;
     
-    public void createNewStorage(List<StorageDto> storageDtos){
+    public void createNewStorage(List<StorageDTO> storageDTOs){
         
-        if(storageDtos !=null){
-            for(StorageDto storageDto : storageDtos){
+        if(storageDTOs !=null){
+            for(StorageDTO storageDTO : storageDTOs){
     
                 Storage storage = new Storage();
-                Item item = itemRepository.findOne(storageDto.getItem());
-                User dealer = userRepository.findOne(storageDto.getDealer());
+                Item item = itemRepository.findOne(storageDTO.getItem());
+                User dealer = userRepository.findOne(storageDTO.getDealer());
     
-                storage.setImage(storageDto.getImage());
-                storage.setPriceMultiplier(storageDto.getPriceMultiplier());
-                storage.setQrHash(storageDto.getQRHash());
-                storage.setQuantity(storageDto.getQuantity());
+                storage.setImage(storageDTO.getImage());
+                storage.setPriceMultiplier(storageDTO.getPriceMultiplier());
+                storage.setQrHash(storageDTO.getQRHash());
+                storage.setQuantity(storageDTO.getQuantity());
                 storage.setItem(item);
                 storage.setDealer(dealer);
                 storageRepository.save(storage);

@@ -1,10 +1,8 @@
-package com.diplomna.traders.business.logic;
+package com.diplomna.traders.business.Logic;
 
-import com.diplomna.traders.dtos.ObjectDto;
-import com.diplomna.traders.models.MyObject;
-import com.diplomna.traders.repository.ObjectRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.diplomna.traders.DTOs.ObjectDTO;
+import com.diplomna.traders.Models.MyObject;
+import com.diplomna.traders.Repository.ObjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -17,22 +15,22 @@ public class ObjectHandler {
     @Autowired
     private ObjectRepository objectRepository;
 
-    public void createNewObject(List<ObjectDto> objectDtos){
+    public void createNewObject(List<ObjectDTO> objectDTOs){
         
-        if(objectDtos !=null){
-            for(ObjectDto objectDto : objectDtos){
+        if(objectDTOs !=null){
+            for(ObjectDTO objectDTO : objectDTOs){
                 MyObject myObject = new MyObject();
-                myObject.setObjectName(objectDto.getObjectName());
+                myObject.setObjectName(objectDTO.getObjectName());
                 objectRepository.save(myObject);
             }
         }
     }
 
-    public List<ObjectDto> getAllObjects(){
+    public List<ObjectDTO> getAllObjects(){
         Iterable<MyObject> myObjects = objectRepository.findAll();
-        List<ObjectDto> result = new ArrayList<>();
+        List<ObjectDTO> result = new ArrayList<>();
         for(MyObject obj:myObjects){
-            result.add(new ObjectDto(obj));
+            result.add(new ObjectDTO(obj));
         }
         return result;
     }

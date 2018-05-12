@@ -1,8 +1,8 @@
-package com.diplomna.traders.business.logic;
+package com.diplomna.traders.business.Logic;
 
-import com.diplomna.traders.dtos.CategoryDto;
-import com.diplomna.traders.models.Category;
-import com.diplomna.traders.repository.CategoryRepository;
+import com.diplomna.traders.DTOs.CategoryDTO;
+import com.diplomna.traders.Models.Category;
+import com.diplomna.traders.Repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -14,13 +14,13 @@ public class CategoryHandler {
     @Autowired
     private CategoryRepository categoryRepository;
 
-    public void createNewCategory(List<CategoryDto> categoryDtos){
+    public void createNewCategory(List<CategoryDTO> categoryDTOs){
 
-        if(categoryDtos != null) {
-            for (CategoryDto categoryDto : categoryDtos) {
+        if(categoryDTOs != null) {
+            for (CategoryDTO categoryDTO : categoryDTOs) {
                 Category category = new Category();
-                category.setName(categoryDto.getName());
-                category.setLevel(categoryDto.getLevel());
+                category.setName(categoryDTO.getName());
+                category.setLevel(categoryDTO.getLevel());
 
                 categoryRepository.save(category);
             }

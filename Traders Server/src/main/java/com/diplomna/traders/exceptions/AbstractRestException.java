@@ -1,4 +1,4 @@
-package com.diplomna.traders.exceptions;
+package com.diplomna.traders.Exceptions;
 
 public class AbstractRestException extends Error {
     

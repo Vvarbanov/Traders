@@ -1,4 +1,4 @@
-package com.diplomna.traders.security;
+package com.diplomna.traders.Security;
 
 import static java.util.Collections.emptyList;
 

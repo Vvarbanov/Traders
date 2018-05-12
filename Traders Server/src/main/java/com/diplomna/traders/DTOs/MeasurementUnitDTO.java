@@ -1,6 +1,6 @@
-package com.diplomna.traders.dtos;
+package com.diplomna.traders.DTOs;
 
-public class MeasurementUnitDto {
+public class MeasurementUnitDTO {
 
     private String name;
 
@@ -8,9 +8,9 @@ public class MeasurementUnitDto {
         return name;
     }
     
-    public MeasurementUnitDto(String name) {
+    public MeasurementUnitDTO(String name) {
         this.name = name;
     }
     
-    public MeasurementUnitDto() {}
+    public MeasurementUnitDTO() {}
 }

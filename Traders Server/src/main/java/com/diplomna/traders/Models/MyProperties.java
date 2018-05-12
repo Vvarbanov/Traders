@@ -1,4 +1,4 @@
-package com.diplomna.traders.models;
+package com.diplomna.traders.Models;
 
 import javax.persistence.*;
 import java.util.ArrayList;

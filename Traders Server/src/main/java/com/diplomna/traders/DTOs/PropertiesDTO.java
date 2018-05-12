@@ -1,19 +1,19 @@
-package com.diplomna.traders.dtos;
+package com.diplomna.traders.DTOs;
 
-import com.diplomna.traders.models.MyProperties;
+import com.diplomna.traders.Models.MyProperties;
 
-public class PropertiesDto {
+public class PropertiesDTO {
 
     private String propertyName;
     private String value;
     private long objectId;
 
-    public PropertiesDto(MyProperties myProp) {
+    public PropertiesDTO(MyProperties myProp) {
         this.propertyName=myProp.getPropertyName();
         this.value=myProp.getValue();
     }
 
-    public PropertiesDto(){}
+    public PropertiesDTO(){}
 
     public String getPropertyName() {
         return propertyName;
