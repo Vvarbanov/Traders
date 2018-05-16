@@ -38,7 +38,6 @@ public class CardViewListingActivity extends AppCompatActivity {
         //((MyRecyclerViewAdapter) mAdapter).deleteItem(index);
     }
 
-
     @Override
     protected void onResume() {
         super.onResume();

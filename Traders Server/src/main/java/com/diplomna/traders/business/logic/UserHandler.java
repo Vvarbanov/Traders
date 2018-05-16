@@ -34,7 +34,7 @@ public class UserHandler implements UserDetailsService{
         try {
             return userRepo.findByUsername(username);
         }catch(UsernameNotFoundException e){
-            return null;
+            throw e;
         }
     }
 }
