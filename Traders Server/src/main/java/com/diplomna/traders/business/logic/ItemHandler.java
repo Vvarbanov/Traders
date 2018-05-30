@@ -1,12 +1,12 @@
-package com.diplomna.traders.business.Logic;
+package com.diplomna.traders.business.logic;
 
-import com.diplomna.traders.DTOs.ItemDTO;
-import com.diplomna.traders.Models.Item;
-import com.diplomna.traders.Models.MeasurementUnit;
-import com.diplomna.traders.Models.MyObject;
-import com.diplomna.traders.Repository.ItemRepository;
-import com.diplomna.traders.Repository.MeasurementUnitRepository;
-import com.diplomna.traders.Repository.ObjectRepository;
+import com.diplomna.traders.dtos.ItemDTO;
+import com.diplomna.traders.models.Item;
+import com.diplomna.traders.models.MeasurementUnit;
+import com.diplomna.traders.models.MyObject;
+import com.diplomna.traders.repository.ItemRepository;
+import com.diplomna.traders.repository.MeasurementUnitRepository;
+import com.diplomna.traders.repository.ObjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

@@ -1,10 +1,10 @@
-package com.diplomna.traders.business.Logic;
+package com.diplomna.traders.business.logic;
 
-import com.diplomna.traders.DTOs.PropertiesDTO;
-import com.diplomna.traders.Models.MyObject;
-import com.diplomna.traders.Models.MyProperties;
-import com.diplomna.traders.Repository.ObjectRepository;
-import com.diplomna.traders.Repository.PropertiesRepository;
+import com.diplomna.traders.dtos.PropertiesDTO;
+import com.diplomna.traders.models.MyObject;
+import com.diplomna.traders.models.MyProperties;
+import com.diplomna.traders.repository.ObjectRepository;
+import com.diplomna.traders.repository.PropertiesRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

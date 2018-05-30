@@ -1,12 +1,12 @@
-package com.diplomna.traders.business.Logic;
+package com.diplomna.traders.business.logic;
 
-import com.diplomna.traders.DTOs.StorageDTO;
-import com.diplomna.traders.Models.Item;
-import com.diplomna.traders.Models.Storage;
-import com.diplomna.traders.Models.User;
-import com.diplomna.traders.Repository.ItemRepository;
-import com.diplomna.traders.Repository.StorageRepository;
-import com.diplomna.traders.Repository.UserRepository;
+import com.diplomna.traders.dtos.StorageDTO;
+import com.diplomna.traders.models.Item;
+import com.diplomna.traders.models.Storage;
+import com.diplomna.traders.models.User;
+import com.diplomna.traders.repository.ItemRepository;
+import com.diplomna.traders.repository.StorageRepository;
+import com.diplomna.traders.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

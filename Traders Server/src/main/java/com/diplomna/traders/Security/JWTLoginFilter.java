@@ -1,4 +1,4 @@
-package com.diplomna.traders.Security;
+package com.diplomna.traders.security;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -8,7 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.diplomna.traders.DTOs.UserDTO;
+import com.diplomna.traders.dtos.UserDTO;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;

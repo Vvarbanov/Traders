@@ -1,8 +1,8 @@
-package com.diplomna.traders.business.Logic;
+package com.diplomna.traders.business.logic;
 
-import com.diplomna.traders.DTOs.ObjectDTO;
-import com.diplomna.traders.Models.MyObject;
-import com.diplomna.traders.Repository.ObjectRepository;
+import com.diplomna.traders.dtos.ObjectDTO;
+import com.diplomna.traders.models.MyObject;
+import com.diplomna.traders.repository.ObjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

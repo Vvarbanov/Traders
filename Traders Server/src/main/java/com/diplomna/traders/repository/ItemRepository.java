@@ -1,6 +1,6 @@
-package com.diplomna.traders.Repository;
+package com.diplomna.traders.repository;
 
-import com.diplomna.traders.Models.Item;
+import com.diplomna.traders.models.Item;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

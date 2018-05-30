@@ -1,8 +1,8 @@
-package com.diplomna.traders.business.Logic;
+package com.diplomna.traders.business.logic;
 
-import com.diplomna.traders.DTOs.UserDTO;
-import com.diplomna.traders.Models.User;
-import com.diplomna.traders.Repository.UserRepository;
+import com.diplomna.traders.dtos.UserDTO;
+import com.diplomna.traders.models.User;
+import com.diplomna.traders.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

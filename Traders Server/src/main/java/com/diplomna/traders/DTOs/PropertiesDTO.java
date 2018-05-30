@@ -1,6 +1,6 @@
-package com.diplomna.traders.DTOs;
+package com.diplomna.traders.dtos;
 
-import com.diplomna.traders.Models.MyProperties;
+import com.diplomna.traders.models.MyProperties;
 
 public class PropertiesDTO {
 

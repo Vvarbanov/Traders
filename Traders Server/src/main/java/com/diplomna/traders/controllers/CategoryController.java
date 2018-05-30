@@ -1,7 +1,7 @@
-package com.diplomna.traders.Controllers;
+package com.diplomna.traders.controllers;
 
-import com.diplomna.traders.DTOs.CategoryDTO;
-import com.diplomna.traders.business.Logic.CategoryHandler;
+import com.diplomna.traders.dtos.CategoryDTO;
+import com.diplomna.traders.business.logic.CategoryHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;

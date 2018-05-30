@@ -1,4 +1,4 @@
-package com.diplomna.traders.DTOs;
+package com.diplomna.traders.dtos;
 
 
 public class ErrorDTO {

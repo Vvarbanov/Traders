@@ -1,7 +1,7 @@
-package com.diplomna.traders.Controllers;
+package com.diplomna.traders.controllers;
 
-import com.diplomna.traders.DTOs.ItemDTO;
-import com.diplomna.traders.business.Logic.ItemHandler;
+import com.diplomna.traders.dtos.ItemDTO;
+import com.diplomna.traders.business.logic.ItemHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

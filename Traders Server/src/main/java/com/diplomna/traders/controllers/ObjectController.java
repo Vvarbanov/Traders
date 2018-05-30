@@ -1,8 +1,8 @@
-package com.diplomna.traders.Controllers;
+package com.diplomna.traders.controllers;
 
-import com.diplomna.traders.DTOs.ObjectDTO;
-import com.diplomna.traders.Models.MyObject;
-import com.diplomna.traders.business.Logic.ObjectHandler;
+import com.diplomna.traders.dtos.ObjectDTO;
+import com.diplomna.traders.models.MyObject;
+import com.diplomna.traders.business.logic.ObjectHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

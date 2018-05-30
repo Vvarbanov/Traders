@@ -1,8 +1,8 @@
-package com.diplomna.traders.business.Logic;
+package com.diplomna.traders.business.logic;
 
-import com.diplomna.traders.DTOs.MeasurementUnitDTO;
-import com.diplomna.traders.Models.MeasurementUnit;
-import com.diplomna.traders.Repository.MeasurementUnitRepository;
+import com.diplomna.traders.dtos.MeasurementUnitDTO;
+import com.diplomna.traders.models.MeasurementUnit;
+import com.diplomna.traders.repository.MeasurementUnitRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

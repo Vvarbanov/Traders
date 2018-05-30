@@ -1,6 +1,6 @@
-package com.diplomna.traders.DTOs;
+package com.diplomna.traders.dtos;
 
-import com.diplomna.traders.Models.User;
+import com.diplomna.traders.models.User;
 
 public class UserDTO {
 

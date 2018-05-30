@@ -1,8 +1,8 @@
-package com.diplomna.traders.DTOs;
+package com.diplomna.traders.dtos;
 
 
-import com.diplomna.traders.Models.MyObject;
-import com.diplomna.traders.Models.MyProperties;
+import com.diplomna.traders.models.MyObject;
+import com.diplomna.traders.models.MyProperties;
 
 import java.util.ArrayList;
 import java.util.List;
