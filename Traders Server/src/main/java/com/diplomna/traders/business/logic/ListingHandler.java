@@ -12,7 +12,6 @@ import java.util.List;
 @Component
 public class ListingHandler {
     
-    
     @Autowired
     private ItemRepository itemRepository;
     
@@ -34,7 +33,7 @@ public class ListingHandler {
             Iterable<Listing> listings = listingRepository.findAll();
             List<ListingDTO> result = new ArrayList<>();
             for (Listing listing : listings) {
-                result.add(new ListingDTO(item.getName(), item.getDescription(), item.getBasePricePerUnit(), item.getUnit().getId(), item.getObject().getId()));
+                result =
             }
             return result;
         }

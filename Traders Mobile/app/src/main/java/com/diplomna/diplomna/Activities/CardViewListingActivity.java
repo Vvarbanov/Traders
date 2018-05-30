@@ -10,8 +10,20 @@ import android.view.View;
 import com.diplomna.diplomna.Models.ListingData;
 import com.diplomna.diplomna.Models.MyRecyclerViewAdapter;
 import com.diplomna.diplomna.R;
+import com.diplomna.diplomna.http.API;
+import com.diplomna.diplomna.http.HttpInfo;
 
+import java.io.IOException;
 import java.util.ArrayList;
+
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class CardViewListingActivity extends AppCompatActivity {
 
@@ -36,6 +48,27 @@ public class CardViewListingActivity extends AppCompatActivity {
         mRecyclerView.setAdapter(mAdapter);
         //((MyRecyclerViewAdapter) mAdapter).addItem(obj, index);
         //((MyRecyclerViewAdapter) mAdapter).deleteItem(index);
+
+
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(HttpInfo.getRetrofitUrl())
+                //.client(client)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        API service = retrofit.create(API.class);
+        service.getCardView().enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+
+            }
+        });
     }
 
     @Override

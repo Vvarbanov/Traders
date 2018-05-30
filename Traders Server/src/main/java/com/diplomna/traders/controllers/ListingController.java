@@ -18,8 +18,6 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 @RestController
 public class ListingController {
     
-    
-    
     @Autowired
     private ListingHandler listingHandler;
     
