@@ -1,7 +1,16 @@
 package com.diplomna.traders.business.logic;
 
+import com.diplomna.traders.dtos.ListingDTO;
+import com.diplomna.traders.models.Listing;
+import com.diplomna.traders.repository.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Component
 public class ListingHandler {
-    
     
     
     @Autowired
@@ -11,38 +20,23 @@ public class ListingHandler {
     private MeasurementUnitRepository measurementUnitRepository;
     
     @Autowired
-    private ObjectRepository objectRepository;
+    private CategoryRepository categoryRepository;
     
-    public void createNewItem(List<ItemDTO> newItems){
-        
-        if(newItems != null) {
-            for (ItemDTO newItem:newItems) {
-                MeasurementUnit unit = measurementUnitRepository.findOne(newItem.getUnit());
-                MyObject object = objectRepository.findOne(newItem.getObject());
-                
-                Item item = new Item();
-                item.setName(newItem.getName());
-                item.setDescription(newItem.getDescription());
-                item.setBasePricePerUnit(newItem.getBasePricePerUnit());
-                item.setUnit(unit);
-                item.setObject(object);
-                
-                itemRepository.save(item);
+    @Autowired
+    private StorageRepository storageRepository;
+    
+    @Autowired
+    private ListingRepository listingRepository;
+    
+    public void createNewListing(List<ListingDTO> newListings) {
+    
+        public List<ListingDTO> getAllListings () {
+            Iterable<Listing> listings = listingRepository.findAll();
+            List<ListingDTO> result = new ArrayList<>();
+            for (Listing listing : listings) {
+                result.add(new ListingDTO(item.getName(), item.getDescription(), item.getBasePricePerUnit(), item.getUnit().getId(), item.getObject().getId()));
             }
+            return result;
         }
     }
-    
-    public List<ItemDTO> getAllItems(){
-        Iterable<Item> items = itemRepository.findAll();
-        List<ItemDTO> result = new ArrayList<>();
-        for(Item item:items){
-            result.add(new ItemDTO(item.getName(), item.getDescription(), item.getBasePricePerUnit(), item.getUnit().getId(), item.getObject().getId()));
-        }
-        return result;
-    }
-    
-    public Item getItemByID(Long id){
-        return itemRepository.findOne(id);
-    }
-    
 }
