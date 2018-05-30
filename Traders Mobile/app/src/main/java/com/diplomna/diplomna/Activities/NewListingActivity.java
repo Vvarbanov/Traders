@@ -63,7 +63,7 @@ public class NewListingActivity extends AppCompatActivity {
 
         API service = retrofit.create(API.class);
 
-        service.
+        //service.
 
     }
 

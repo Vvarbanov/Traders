@@ -212,13 +212,13 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:background="@android:color/transparent"
-        android:src="@drawable/regButton"
+        android:src="@drawable/register_button"
         android:text="@string/register"
         app:layout_constraintBottom_toTopOf="@+id/lblLoginButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/spnrAccType"
-        app:layout_constraintVertical_bias="0.839" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.97" />
 
     <TextView
         android:id="@+id/lblLoginButton"
@@ -244,7 +244,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:background="@android:color/transparent"
-        android:src="@drawable/logInButton"
+        android:src="@drawable/login_button"
         android:text="@string/sign_in"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
