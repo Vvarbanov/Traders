@@ -12,4 +12,5 @@ public interface API {
     @POST("/login")
     Call<Void> login(@Body UserDTO userDTO);
 
+    @POST("/")
 }
