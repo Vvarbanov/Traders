@@ -5,14 +5,20 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.diplomna.diplomna.DTOs.ItemDTO;
+import com.diplomna.diplomna.DTOs.SubCategoryDTO;
 import com.diplomna.diplomna.R;
 import com.diplomna.diplomna.http.API;
 
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -32,16 +38,12 @@ public class NewListingActivity extends AppCompatActivity {
     @Inject
     SharedPreferences sharedPreferences;
 
-    public Button createButton;
-    private EditText txtItemName, txtUnit, txtPrice, txtDesc, txtQuant;
+    public ImageButton createButton;
+    private EditText txtItemName, txtPrice, txtDesc, txtQuant;
     private Spinner spnrCategory;
 
     public String getItemName(){
         return txtItemName.getText().toString().trim();
-    }
-
-    public String getUnit(){
-        return txtUnit.getText().toString().trim();
     }
 
     public Double getPrice(){
@@ -63,9 +65,43 @@ public class NewListingActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         init();
+
+        API service = retrofit.create(API.class);
+
+        service.getAllSubCategories().enqueue(new Callback<List<SubCategoryDTO>>() {
+            @Override
+            public void onResponse(Call<List<SubCategoryDTO>> call, Response<List<SubCategoryDTO>> response) {
+                if(response.isSuccessful()){
+
+                    List<SubCategoryDTO> subCategoryDTOList = response.body();
+
+                    ArrayList<String> spinnerList = new ArrayList<>();
+
+                    for (SubCategoryDTO subCat: subCategoryDTOList
+                         ) {
+                        spinnerList.add(subCat.getName().trim());
+                    }
+
+                    ArrayAdapter<String> adapter = new ArrayAdapter<>(getApplicationContext(),
+                            android.R.layout.simple_spinner_item, spinnerList);
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spnrCategory.setAdapter(adapter);
+                }else {
+                    Toast.makeText(getApplicationContext(),response.message(),Toast.LENGTH_SHORT).show();
+                    Log.v(this.getClass().getSimpleName(),"response:" + response.message());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<SubCategoryDTO>> call, Throwable t) {
+                Toast.makeText(getApplicationContext(),t.getMessage(),Toast.LENGTH_SHORT).show();
+                Log.v(this.getClass().getSimpleName(), "error:" + t.getMessage());
+            }
+        });
+
     }
 
-    @OnClick(R.id.btnCreate)
+    @OnClick(R.id.imgbtnCreate)
     public void submit(View view){
 
         API service = retrofit.create(API.class);
@@ -76,7 +112,7 @@ public class NewListingActivity extends AppCompatActivity {
         itemDTO.setUser(sharedPreferences.getString("username", "N/A"));
         itemDTO.setBasePricePerUnit(getPrice());
         itemDTO.setDescription(getDesc());
-        itemDTO.setSubCategory("Notebooks");
+        itemDTO.setSubCategory(spnrCategory.getSelectedItem().toString());
         itemDTO.setQuantity(getQuant());
 
         service.createNewListing(itemDTO).enqueue(new Callback<Void>() {
@@ -95,18 +131,15 @@ public class NewListingActivity extends AppCompatActivity {
             }
         });
 
-        //service.
-
     }
 
     public void init(){
-        createButton = findViewById(R.id.btnCreate);
+        createButton = findViewById(R.id.imgbtnCreate);
         txtItemName = findViewById(R.id.txtNameOfItem);
-        txtUnit = findViewById(R.id.txtUnit);
         txtPrice = findViewById(R.id.txtPrice);
         txtDesc = findViewById(R.id.txtDescription);
         txtQuant = findViewById(R.id.txtQuantity);
-        //spnrCategory = findViewById(R.id.spnrCategory);
+        spnrCategory = findViewById(R.id.spnrCategory);
     }
 
 

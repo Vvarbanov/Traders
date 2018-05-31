@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.diplomna.diplomna.DTOs.AccountType;
@@ -41,9 +42,11 @@ public class LoginActivity extends AppCompatActivity {
     @Inject
     Retrofit retrofit;
 
-    public Button loginButton, registerButton;
-    private EditText txtPass, txtEmail;
+    public ImageButton loginButton;
+    public Button registerButton;
+    private EditText txtPass, txtUsername;
     private final String TOKEN_PREFIX = "Bearer";
+
     @Inject
     SharedPreferences preferences;
 
@@ -51,12 +54,12 @@ public class LoginActivity extends AppCompatActivity {
         return txtPass.getText().toString().trim();
     }
 
-    public String getEmail() {
-        return txtEmail.getText().toString().trim();
+    public String getUsername() {
+        return txtUsername.getText().toString().trim();
     }
 
     //get from database user type
-    private String userType = "CUSTOMER";
+    private AccountType userType;
 
     private boolean validateLogin(String username, String password){
         if(username == null || username.trim().length() == 0){
@@ -76,7 +79,7 @@ public class LoginActivity extends AppCompatActivity {
         loginButton = findViewById(R.id.loginButton);
         registerButton = findViewById(R.id.registerButton);
         txtPass = findViewById(R.id.txtPassword);
-        txtEmail = findViewById(R.id.textEmail);
+        txtUsername = findViewById(R.id.textEmail);
 
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,6 +98,8 @@ public class LoginActivity extends AppCompatActivity {
         ((DIApplication) this.getApplicationContext()).getApplicationComponent().inject(this);
 
         init();
+
+
 
         String userJwtToken = preferences.getString("token", "N/A");
         if(!"N/A".equals(userJwtToken)) {
@@ -118,11 +123,39 @@ public class LoginActivity extends AppCompatActivity {
     @OnClick(R.id.loginButton)
     public void submit(View view) {
         String passString = getPass();
-        String emailString = getEmail();
+        String usernameString = getUsername();
+
+        preferences.edit().putString("username", usernameString).apply();
+
         API service = retrofit.create(API.class);
+
+        service.getUserByUsername(preferences.getString("username", "N/A")).enqueue(new Callback<UserDTO>() {
+            @Override
+            public void onResponse(Call<UserDTO> call, Response<UserDTO> response) {
+                if(response.isSuccessful()){
+
+                    UserDTO userDTO = response.body();
+                    if (userDTO.getAccountType() != null) {
+                        userType = userDTO.getAccountType();
+                    }else
+                        userType = AccountType.CUSTOMER;
+
+                }else {
+                    Toast.makeText(getApplicationContext(),response.message(),Toast.LENGTH_SHORT).show();
+                    Log.v(this.getClass().getSimpleName(),"response:" + response.message());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserDTO> call, Throwable t) {
+                Toast.makeText(getApplicationContext(),t.getMessage(),Toast.LENGTH_SHORT).show();
+                Log.v(this.getClass().getSimpleName(), "error:" + t.getMessage());
+            }
+        });
+
         UserDTO user = new UserDTO();
         user.setPassword(passString);
-        user.setUsername(emailString);
+        user.setUsername(usernameString);
         service.login(user).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
@@ -143,7 +176,7 @@ public class LoginActivity extends AppCompatActivity {
                 Log.e("Retro",t.getMessage());
             }
         });
-        if(validateLogin(emailString, passString)) {
+        if(validateLogin(usernameString, passString)) {
             if (userType.equals(AccountType.DEALER)) {
                 Intent intent = new Intent(LoginActivity.this, MainActivityDealer.class);
                 startActivity(intent);

@@ -11,10 +11,8 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.diplomna.diplomna.DTOs.CategoryDTO;
-import com.diplomna.diplomna.DTOs.SubCategoryDTO;
 import com.diplomna.diplomna.R;
 import com.diplomna.diplomna.adapters.CategoryAdapter;
-import com.diplomna.diplomna.adapters.SubCategoryAdapter;
 import com.diplomna.diplomna.application.DIApplication;
 import com.diplomna.diplomna.http.API;
 

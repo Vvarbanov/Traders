@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.diplomna.diplomna.Activities.LoginActivity;
+import com.diplomna.diplomna.Activities.MainActivityCustomer;
+import com.diplomna.diplomna.Activities.SubCategoriesActivity;
 import com.diplomna.diplomna.DI.modules.ApplicationModule;
 import com.diplomna.diplomna.DI.modules.RetrofitModule;
 
@@ -26,4 +28,6 @@ public interface ApplicationComponent {
     SharedPreferences sharedPreferences();
     Context contextInject();
 
+    void inject(MainActivityCustomer app);
+    void inject(SubCategoriesActivity app);
 }

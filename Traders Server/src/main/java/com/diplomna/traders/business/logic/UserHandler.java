@@ -25,6 +25,8 @@ public class UserHandler implements UserDetailsService{
     public User registerNewUserAccount(UserDTO accountDto) throws Exception{
         if(loadUserByUsername(accountDto.getUsername()) == null) {
             User newUser = new User(accountDto.getUsername(), passwordEncoder.encode(accountDto.getPassword()), accountDto.getEmail(), accountDto.getPhone(), accountDto.getAccountType());
+            newUser.setEmail(accountDto.getEmail());
+            newUser.setPhone(accountDto.getPhone());
             userRepo.save(newUser);
             return newUser;
         }else{

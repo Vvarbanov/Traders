@@ -8,6 +8,7 @@ public class ItemDTO {
     private String user;
     private String subCategory;
     private int quantity;
+    
 
     public ItemDTO() { }
     
