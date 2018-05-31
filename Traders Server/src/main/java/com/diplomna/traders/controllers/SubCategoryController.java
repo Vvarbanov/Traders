@@ -38,7 +38,7 @@ public class SubCategoryController {
     }
 
     @RequestMapping(value = "/{categoryName}",method = RequestMethod.GET)
-    public ResponseEntity getAllSubcategories(@PathVariable String categoryName) {
+    public ResponseEntity getAllSubcategoriesByCategory(@PathVariable String categoryName) {
         List<SubCategoryDTO> result;
 
         try {

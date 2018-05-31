@@ -10,6 +10,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.security.PrivateKey;
+
 @Component
 public class UserHandler implements UserDetailsService{
     
@@ -27,6 +29,17 @@ public class UserHandler implements UserDetailsService{
         }else{
             return null;
         }
+    }
+    
+    public User getByUsername(String username) throws UsernameNotFoundException {
+        User result;
+        
+            if(username == null)
+                throw new UsernameNotFoundException("invalid username");
+    
+        result = userRepo.findByUsername(username);
+    
+        return result;
     }
     
     @Override

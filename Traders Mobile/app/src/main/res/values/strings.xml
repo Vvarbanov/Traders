@@ -4,7 +4,7 @@
     <string name="rightMainButton">3rd Activity!</string>
     <string name="emailHint">Email</string>
     <string name="passwordHint">Password</string>
-    <string name="register_login">Регистрирай се</string>
+    <string name="register_login">Register</string>
     <string name="logIn">Log In</string>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="title_activity_login">Sign in</string>
