@@ -20,9 +20,6 @@ public class Item {
     @Column(name = "item_base_price_per_unit")
     private double basePricePerUnit;
 
-    @Column(name = "quantity")
-    private int quantity;
-    
     @Column(name = "item_description")
     @Size(max = 5000)
     private String description;
@@ -90,13 +87,5 @@ public class Item {
 
     public void setSubCategory(SubCategory subCategory) {
         this.subCategory = subCategory;
-    }
-    
-    public int getQuantity() {
-        return quantity;
-    }
-    
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
     }
 }
