@@ -2,11 +2,11 @@ package com.diplomna.traders.business.logic;
 
 import com.diplomna.traders.dtos.ItemDTO;
 import com.diplomna.traders.models.Item;
-import com.diplomna.traders.models.MeasurementUnit;
-import com.diplomna.traders.models.MyObject;
+import com.diplomna.traders.models.SubCategory;
+import com.diplomna.traders.models.User;
 import com.diplomna.traders.repository.ItemRepository;
-import com.diplomna.traders.repository.MeasurementUnitRepository;
-import com.diplomna.traders.repository.ObjectRepository;
+import com.diplomna.traders.repository.SubCategoryRepository;
+import com.diplomna.traders.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -20,37 +20,37 @@ public class ItemHandler {
     private ItemRepository itemRepository;
 
     @Autowired
-    private MeasurementUnitRepository measurementUnitRepository;
+    private UserRepository userRepository;
 
     @Autowired
-    private ObjectRepository objectRepository;
+    private SubCategoryRepository subCategoryRepository;
 
-    public void createNewItem(List<ItemDTO> newItems){
+    public List<Long> createNewItem(List<ItemDTO> newItems){
+
+        List<Long> result = new ArrayList<>();
 
         if(newItems != null) {
             for (ItemDTO newItem:newItems) {
-                MeasurementUnit unit = measurementUnitRepository.findOne(newItem.getUnit());
-                MyObject object = objectRepository.findOne(newItem.getObject());
+
+                User user = userRepository.findByUsername(newItem.getUser());
+                SubCategory subCategory = subCategoryRepository.findByName(newItem.getSubCategory());
 
                 Item item = new Item();
                 item.setName(newItem.getName());
                 item.setDescription(newItem.getDescription());
+                item.setQuantity(newItem.getQuantity());
                 item.setBasePricePerUnit(newItem.getBasePricePerUnit());
-                item.setUnit(unit);
-                item.setObject(object);
+                item.setUser(user);
+                item.setSubCategory(subCategory);
 
-                itemRepository.save(item);
+                result.add(itemRepository.save(item).getId());
             }
         }
+        return result;
     }
     
     public List<ItemDTO> getAllItems(){
-        Iterable<Item> items = itemRepository.findAll();
-        List<ItemDTO> result = new ArrayList<>();
-        for(Item item:items){
-            result.add(new ItemDTO(item.getName(), item.getDescription(), item.getBasePricePerUnit(), item.getUnit().getId(), item.getObject().getId()));
-        }
-        return result;
+        return null;
     }
     
     public Item getItemByID(Long id){

@@ -28,7 +28,7 @@ public class ItemController {
         return ResponseEntity.ok(itemDTO);
     }
     
-    @RequestMapping(value = "/getAll", method = GET)
+    @RequestMapping(value = "/", method = GET)
     public ResponseEntity<Iterable<ItemDTO>> getAllItems(){
         List<ItemDTO> objects = itemHandler.getAllItems();
         

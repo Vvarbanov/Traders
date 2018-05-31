@@ -1,6 +1,7 @@
 package com.diplomna.traders.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,17 +13,14 @@ public class Category {
     private long id;
 
     @Column(name = "category_name")
+    @NotNull
     private String name;
 
-    @Column(name = "category_level")
-    private int level;
-
-    @ManyToMany
-    private List<Item> items = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "category",fetch = FetchType.EAGER)
+    private List<SubCategory> subCategories = new ArrayList<>();
 
     public Category(String name, int level) {
         this.name = name;
-        this.level = level;
     }
 
     public Category() {}
@@ -33,14 +31,6 @@ public class Category {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public int getLevel() {
-        return level;
-    }
-
-    public void setLevel(int level) {
-        this.level = level;
     }
     
     public long getId() {

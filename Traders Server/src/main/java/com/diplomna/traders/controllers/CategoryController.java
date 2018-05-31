@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @RequestMapping("/categories")
@@ -20,10 +21,16 @@ public class CategoryController {
     private CategoryHandler catHandler;
 
     @RequestMapping(value = "/create",method = POST)
-    public ResponseEntity<List<CategoryDTO>> CreateCategory(@RequestBody List<CategoryDTO> categoryDTO){
+    public ResponseEntity createCategory(@RequestBody List<CategoryDTO> categoryDTO){
 
         catHandler.createNewCategory(categoryDTO);
 
         return ResponseEntity.ok(categoryDTO);
     }
+
+    @RequestMapping(value = "/",method = GET)
+    public ResponseEntity getAllCategories() {
+        return ResponseEntity.ok(catHandler.getAll());
+    }
+
 }

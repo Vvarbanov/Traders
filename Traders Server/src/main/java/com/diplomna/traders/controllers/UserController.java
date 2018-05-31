@@ -3,7 +3,7 @@ package com.diplomna.traders.controllers;
 import com.diplomna.traders.dtos.ErrorDTO;
 import com.diplomna.traders.dtos.UserDTO;
 import com.diplomna.traders.business.logic.UserHandler;
-import com.diplomna.traders.Exceptions.AbstractRestException;
+import com.diplomna.traders.exceptions.AbstractRestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

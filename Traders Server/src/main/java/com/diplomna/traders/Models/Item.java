@@ -1,6 +1,9 @@
 package com.diplomna.traders.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,28 +20,41 @@ public class Item {
     @Column(name = "item_base_price_per_unit")
     private double basePricePerUnit;
 
+    @Column(name = "quantity")
+    private int quantity;
+    
     @Column(name = "item_description")
+    @Size(max = 500)
     private String description;
 
-    @ManyToMany(mappedBy = "items")
-    private List<Category> categories = new ArrayList<>();
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "subcategory_id",nullable = false)
+    private SubCategory subCategory;
 
-    @OneToOne
-    @PrimaryKeyJoinColumn
-    private MeasurementUnit unit;
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "user_id",nullable = false)
+    private User user;
 
-    @OneToOne
-    private MyObject object;
-
-    public Item(String name, double basePricePerUnit, String description, MeasurementUnit unit, MyObject object) {
+    public Item(String name, double basePricePerUnit, String description, SubCategory subCategory, User user) {
         this.name = name;
         this.basePricePerUnit = basePricePerUnit;
         this.description = description;
-        this.unit = unit;
-        this.object = object;
+        this.subCategory = subCategory;
+        this.user = user;
     }
 
     public Item() {}
+
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public String getName() {
         return name;
@@ -56,22 +72,6 @@ public class Item {
         this.basePricePerUnit = basePricePerUnit;
     }
 
-    public MeasurementUnit getUnit() {
-        return unit;
-    }
-
-    public void setUnit(MeasurementUnit unit) {
-        this.unit = unit;
-    }
-
-    public MyObject getObject(){
-        return object;
-    }
-
-    public void setObject(MyObject object) {
-        this.object = object;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -82,5 +82,21 @@ public class Item {
     
     public long getId() {
         return id;
+    }
+
+    public SubCategory getSubCategory() {
+        return subCategory;
+    }
+
+    public void setSubCategory(SubCategory subCategory) {
+        this.subCategory = subCategory;
+    }
+    
+    public int getQuantity() {
+        return quantity;
+    }
+    
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }

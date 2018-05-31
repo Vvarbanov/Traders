@@ -4,8 +4,10 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 @Entity
 public class User implements UserDetails {
@@ -21,10 +23,9 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(name = "user_name")
     private String username;
 
-    @Column(name = "user_password",length = 255)
+    @Column(length = 255)
     private String password;
 
     @Column(name = "user_email")
@@ -36,6 +37,9 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private AccountType accountType;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user",fetch = FetchType.EAGER)
+    private List<Item> items = new ArrayList<>();
 
     public User(String username, String password, String email, String phone, AccountType accountType) {
         this.username = username;
@@ -116,5 +120,13 @@ public class User implements UserDetails {
     
     public long getId() {
         return id;
+    }
+
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(List<Item> items) {
+        this.items = items;
     }
 }
