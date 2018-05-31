@@ -24,7 +24,7 @@ public class Item {
     private int quantity;
     
     @Column(name = "item_description")
-    @Size(max = 500)
+    @Size(max = 5000)
     private String description;
 
     @JsonIgnore

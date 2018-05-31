@@ -12,7 +12,7 @@ import java.util.List;
 @Entity
 public class User implements UserDetails {
     
-    //username: valcho, password: 123456
+    //username: valko, password: 123456
     
     public enum AccountType{
         DEALER,
