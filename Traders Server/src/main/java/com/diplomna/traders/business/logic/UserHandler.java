@@ -1,6 +1,7 @@
 package com.diplomna.traders.business.logic;
 
 import com.diplomna.traders.dtos.UserDTO;
+import com.diplomna.traders.exceptions.UserNotFoundException;
 import com.diplomna.traders.models.User;
 import com.diplomna.traders.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,14 +32,12 @@ public class UserHandler implements UserDetailsService{
         }
     }
     
-    public User getByUsername(String username) throws UsernameNotFoundException {
-        User result;
+    public User getByUsername(String username) throws UserNotFoundException {
+        User result = userRepo.findByUsername(username);
         
-            if(username == null)
+            if(result == null)
                 throw new UsernameNotFoundException("invalid username");
-    
-        result = userRepo.findByUsername(username);
-    
+        
         return result;
     }
     

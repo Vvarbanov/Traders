@@ -24,22 +24,22 @@ public class CategoryAdapter extends ArrayAdapter<CategoryDTO> {
 
     }
 
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-           CategoryDTO entry = data.get(position);
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        CategoryDTO entry = data.get(position);
 
-            if (convertView == null) {
+        if (convertView == null) {
 
-                LayoutInflater inflater = LayoutInflater.from(getContext());
-                convertView = inflater.inflate(R.layout.category_row, parent, false);
+            LayoutInflater inflater = LayoutInflater.from(getContext());
+            convertView = inflater.inflate(R.layout.category_row, parent, false);
 
-                TextView categoryName = convertView.findViewById(R.id.category_name);
+            TextView categoryName = convertView.findViewById(R.id.category_name);
 
-                categoryName.setText(entry.getName());
-            }
-
-            return convertView;
+            categoryName.setText(entry.getName());
         }
+
+        return convertView;
+    }
 
     public List<CategoryDTO> getData() {
         return data;

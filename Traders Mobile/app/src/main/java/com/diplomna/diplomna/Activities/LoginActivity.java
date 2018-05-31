@@ -117,8 +117,6 @@ public class LoginActivity extends AppCompatActivity {
 
     @OnClick(R.id.loginButton)
     public void submit(View view) {
-        Intent intent1 = new Intent(LoginActivity.this, MainActivityCustomer.class);
-        startActivity(intent1);
         String passString = getPass();
         String emailString = getEmail();
         API service = retrofit.create(API.class);

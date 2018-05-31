@@ -3,7 +3,7 @@ package com.diplomna.diplomna.http;
 
 
 public class HttpInfo {
-    public static final String httpAddress="10.0.2.2";
+    public static final String httpAddress="10.19.9.30";
     public static final String httpPort="8081";
     public static final String protocolType="http";
     public static final long CONNECT_TIMEOUT_MS=10*1000l;

@@ -42,7 +42,7 @@ public class UserController {
         }
     }
     
-    @RequestMapping("/byUsername")
+    @RequestMapping("/{username}")
     public ResponseEntity getAllByUsername(@PathVariable String username) {
         User result;
     

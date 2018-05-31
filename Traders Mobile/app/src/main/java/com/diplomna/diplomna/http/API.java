@@ -2,6 +2,7 @@ package com.diplomna.diplomna.http;
 
 
 import com.diplomna.diplomna.DTOs.CategoryDTO;
+import com.diplomna.diplomna.DTOs.ItemDTO;
 import com.diplomna.diplomna.DTOs.SubCategoryDTO;
 import com.diplomna.diplomna.DTOs.UserDTO;
 
@@ -17,6 +18,9 @@ public interface API {
 
     @POST("/login")
     Call<Void> login(@Body UserDTO userDTO);
+
+    @POST("/subcategories/create")
+    Call<Void> createNewListing(@Body ItemDTO itemDTO);
 
     @GET("/categories/")
     Call<List<CategoryDTO>> getAllCategories();
