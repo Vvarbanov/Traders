@@ -23,7 +23,7 @@ public class MainActivityCustomer extends ListActivity {
         this.level = level;
     }
 
-    //get strings from database or hardcode
+    //get strings from    database or hardcode
     private String[] MainStr = {"Ядки", "Зеленчуци", "Плодове"};
     private String[] Qdki = {"Фъстъци", "Кашу", "Бадеми"};
     private String[] Plod = {"Банан", "Ябълка", "Портокал"};

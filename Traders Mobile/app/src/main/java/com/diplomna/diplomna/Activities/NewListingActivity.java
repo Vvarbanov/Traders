@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import com.diplomna.diplomna.R;
 import com.diplomna.diplomna.http.API;
@@ -31,6 +32,7 @@ public class NewListingActivity extends AppCompatActivity {
 
     public Button createButton;
     private EditText txtItemName, txtUnit, txtPrice, txtDesc, txtQuant;
+    private Spinner spnrCategory;
 
     public String getItemName(){
         return txtItemName.getText().toString().trim();
@@ -56,6 +58,9 @@ public class NewListingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_listing);
+        ButterKnife.bind(this);
+
+        init();
     }
 
     @OnClick(R.id.btnCreate)
@@ -74,6 +79,7 @@ public class NewListingActivity extends AppCompatActivity {
         txtPrice = findViewById(R.id.txtPrice);
         txtDesc = findViewById(R.id.txtDescription);
         txtQuant = findViewById(R.id.txtQuantity);
+        spnrCategory = findViewById(R.id.spnrCategory);
     }
 
 
