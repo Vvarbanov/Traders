@@ -49,6 +49,7 @@ public class ItemHandler {
                 item.setBasePricePerUnit(newItem.getBasePricePerUnit());
                 item.setUser(user);
                 item.setSubCategory(subCategory);
+                item.setQuantity(newItem.getQuantity());
 
                 result = itemRepository.save(item).getId();
 

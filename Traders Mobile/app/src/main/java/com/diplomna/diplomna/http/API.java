@@ -1,6 +1,7 @@
 package com.diplomna.diplomna.http;
 
 
+import com.diplomna.diplomna.DTOs.ItemDTO;
 import com.diplomna.diplomna.DTOs.UserDTO;
 
 import retrofit2.Call;
@@ -15,4 +16,7 @@ public interface API {
 
     @GET("/")
     Call<Void> getCardView(@Body UserDTO userDTO);
+
+    @POST("/subcategories/create")
+    Call<Void> createNewListing(@Body ItemDTO itemDTO);
 }

@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.diplomna.diplomna.DTOs.AccountType;
@@ -41,7 +42,8 @@ public class LoginActivity extends AppCompatActivity {
     @Inject
     Retrofit retrofit;
 
-    public Button loginButton, registerButton;
+    public ImageButton loginButton;
+    public Button registerButton;
     private EditText txtPass, txtEmail;
     private final String TOKEN_PREFIX = "Bearer";
     @Inject
@@ -131,7 +133,7 @@ public class LoginActivity extends AppCompatActivity {
                     String jwtTokenResponse = response.headers().get(HttpInfo.jwtTokenHeaderName);
                     if(StringUtils.isNotBlank(jwtTokenResponse)){
                         preferences.edit().putString("token",jwtTokenResponse).apply();
-
+                        preferences.edit().putString("username", getEmail()).apply();
                     }
                 }else{
                     Log.d("login","not successful");

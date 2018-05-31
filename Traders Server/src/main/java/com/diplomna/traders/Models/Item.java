@@ -21,6 +21,8 @@ public class Item {
     @Column(name = "item_description")
     @Size(max = 5000)
     private String description;
+    
+    private int quantity;
 
     @JsonIgnore
     @ManyToOne
@@ -41,8 +43,15 @@ public class Item {
     }
 
     public Item() {}
-
-
+    
+    public int getQuantity() {
+        return quantity;
+    }
+    
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+    
     public User getUser() {
         return user;
     }

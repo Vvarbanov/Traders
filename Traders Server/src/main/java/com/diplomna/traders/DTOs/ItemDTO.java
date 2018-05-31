@@ -7,9 +7,18 @@ public class ItemDTO {
     private double basePricePerUnit;
     private String user;
     private String subCategory;
+    private int quantity;
 
     public ItemDTO() { }
-
+    
+    public int getQuantity() {
+        return quantity;
+    }
+    
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+    
     public String getSubCategory() {
         return subCategory;
     }
