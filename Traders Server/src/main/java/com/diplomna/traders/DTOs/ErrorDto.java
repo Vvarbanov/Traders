@@ -1,6 +1,5 @@
 package com.diplomna.traders.dtos;
 
-
 public class ErrorDTO {
     private String Message;
     
