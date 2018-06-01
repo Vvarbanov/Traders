@@ -1,7 +1,8 @@
 package com.diplomna.diplomna.DTOs;
 
-public class ItemDTO {
+import java.io.Serializable;
 
+public class ItemDTO implements Serializable{
     private String name;
     private String description;
     private double basePricePerUnit;
@@ -9,12 +10,16 @@ public class ItemDTO {
     private String subCategory;
     private int quantity;
 
-    public int getQuantity() {
-        return quantity;
+    public ItemDTO(String name, String description, double basePricePerUnit, String user, String subCategory, int quantity) {
+        this.name = name;
+        this.description = description;
+        this.basePricePerUnit = basePricePerUnit;
+        this.user = user;
+        this.subCategory = subCategory;
+        this.quantity = quantity;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public ItemDTO() {
     }
 
     public String getName() {
@@ -55,5 +60,13 @@ public class ItemDTO {
 
     public void setSubCategory(String subCategory) {
         this.subCategory = subCategory;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }

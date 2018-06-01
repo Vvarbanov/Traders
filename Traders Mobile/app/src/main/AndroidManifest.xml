@@ -24,7 +24,9 @@
         <activity android:name=".Activities.MainActivityCustomer" />
         <activity android:name=".Activities.ProfileActivity" />
         <activity android:name=".Activities.NewListingActivity" />
-        <activity android:name=".Activities.SubcategoryActivity"></activity>
+        <activity android:name=".Activities.SubcategoryActivity" />
+        <activity android:name=".Activities.ItemInfoActivity" />
+        <activity android:name=".Activities.ItemListingActivity"></activity>
     </application>
 
 </manifest>

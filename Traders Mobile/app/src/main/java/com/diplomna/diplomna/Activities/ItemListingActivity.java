@@ -10,9 +10,9 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.diplomna.diplomna.DTOs.SubCategoryDTO;
+import com.diplomna.diplomna.DTOs.ItemDTO;
 import com.diplomna.diplomna.R;
-import com.diplomna.diplomna.adapters.SubCategoryAdapter;
+import com.diplomna.diplomna.adapters.ItemAdapter;
 import com.diplomna.diplomna.application.DIApplication;
 import com.diplomna.diplomna.http.API;
 
@@ -27,49 +27,52 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class SubCategoriesActivity extends AppCompatActivity {
+public class ItemListingActivity extends AppCompatActivity {
 
-    @BindView(R.id.subCatView)
-    ListView categoryListView;
+    @BindView(R.id.item_list)
+    ListView itemsList;
     @BindView(R.id.progress_bar)
     ProgressBar progressBar;
 
     @Inject
     Retrofit retrofit;
 
+    String subCategoryName, unit;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sub_categories);
+        setContentView(R.layout.activity_item_listing);
 
         ((DIApplication) this.getApplicationContext()).getApplicationComponent().inject(this);
         ButterKnife.bind(this);
 
         Intent intent = getIntent();
 
-        categoryListView.setVisibility(View.INVISIBLE);
+        subCategoryName = intent.getExtras().getString("name");
+        unit = intent.getExtras().getString("unit");
+
+        itemsList.setVisibility(View.INVISIBLE);
 
         API service = retrofit.create(API.class);
 
-        service.getAllSubCategoriesByCategory(intent.getStringExtra("name")).enqueue(new Callback<List<SubCategoryDTO>>() {
+        service.getItemsBySubCategory(subCategoryName).enqueue(new Callback<List<ItemDTO>>() {
             @Override
-            public void onResponse(Call<List<SubCategoryDTO>> call, Response<List<SubCategoryDTO>> response) {
-
+            public void onResponse(Call<List<ItemDTO>> call, Response<List<ItemDTO>> response) {
                 if (response.isSuccessful()) {
 
-                    categoryListView.setVisibility(View.VISIBLE);
+                    itemsList.setVisibility(View.VISIBLE);
                     progressBar.setVisibility(View.INVISIBLE);
-                    final SubCategoryAdapter adapterSubCategories = new SubCategoryAdapter(getApplicationContext(), response.body());
+                    final ItemAdapter adapter = new ItemAdapter(getApplicationContext(),response.body(),unit);
 
-                    categoryListView.setAdapter(adapterSubCategories);
+                    itemsList.setAdapter(adapter);
 
-
-                    categoryListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    itemsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                            Intent startActivity = new Intent( SubCategoriesActivity.this,ItemListingActivity.class);
-                            startActivity.putExtra("name",adapterSubCategories.getData().get(i).getName());
-                            startActivity.putExtra("unit",adapterSubCategories.getData().get(i).getUnit());
+                            Intent startActivity = new Intent( ItemListingActivity.this,ItemInfoActivity.class);
+                            startActivity.putExtra("item",adapter.getData().get(i));
+                            startActivity.putExtra("unit", unit);
 
                             startActivity(startActivity);
                         }
@@ -82,7 +85,7 @@ public class SubCategoriesActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<SubCategoryDTO>> call, Throwable t) {
+            public void onFailure(Call<List<ItemDTO>> call, Throwable t) {
                 Toast.makeText(getApplicationContext(),"Error occurred",Toast.LENGTH_SHORT).show();
                 Log.v(this.getClass().getSimpleName(), "error:" + t.getMessage());
             }

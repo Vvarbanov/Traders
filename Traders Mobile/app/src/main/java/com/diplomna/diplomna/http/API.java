@@ -35,6 +35,9 @@ public interface API {
     @POST("/users/register")
     Call<Void> register(@Body UserDTO userDTO);
 
+    @GET("/items/getBySubCategory/{subCategoryName}")
+    Call<List<ItemDTO>> getItemsBySubCategory(@Path("subCategoryName") String subCategoryName);
+
     @GET("/subcategories/{categoryName}")
     Call<List<SubCategoryDTO>> getAllSubCategoriesByCategory(@Query("categoryName") String categoryName);
 }

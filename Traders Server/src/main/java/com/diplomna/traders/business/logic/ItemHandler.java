@@ -57,8 +57,8 @@ public class ItemHandler {
         return result;
     }
     
-    public List<ItemDTO> getAllItems(){
-        return null;
+    public List<Item> getAllItems(){
+        return (List<Item>) itemRepository.findAll();
     }
     
     public Item getItemByID(Long id){

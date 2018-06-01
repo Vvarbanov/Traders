@@ -4,6 +4,7 @@ package com.diplomna.diplomna.DI.components;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.diplomna.diplomna.Activities.ItemListingActivity;
 import com.diplomna.diplomna.Activities.LoginActivity;
 import com.diplomna.diplomna.Activities.MainActivityCustomer;
 import com.diplomna.diplomna.Activities.SubCategoriesActivity;
@@ -22,12 +23,13 @@ import retrofit2.Retrofit;
 
 public interface ApplicationComponent {
 
-    void inject(LoginActivity app);
     Retrofit provideRetrofitClient();
     OkHttpClient okHttpClient();
     SharedPreferences sharedPreferences();
     Context contextInject();
 
+    void inject(LoginActivity app);
     void inject(MainActivityCustomer app);
     void inject(SubCategoriesActivity app);
+    void inject(ItemListingActivity app);
 }
