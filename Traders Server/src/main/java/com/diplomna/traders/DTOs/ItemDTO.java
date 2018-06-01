@@ -1,6 +1,5 @@
 package com.diplomna.traders.dtos;
 
-
 public class ItemDTO {
 
     private String name;

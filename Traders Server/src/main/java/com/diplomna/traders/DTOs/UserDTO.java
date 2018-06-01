@@ -2,7 +2,6 @@ package com.diplomna.traders.dtos;
 
 import com.diplomna.traders.models.User;
 
-
 public class UserDTO {
 
     private String username;

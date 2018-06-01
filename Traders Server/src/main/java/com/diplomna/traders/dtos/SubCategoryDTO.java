@@ -1,6 +1,5 @@
 package com.diplomna.traders.dtos;
 
-
 public class SubCategoryDTO {
     private String name;
     private String mainCategory;
