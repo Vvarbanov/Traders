@@ -41,9 +41,9 @@ public class ItemController {
         return ResponseEntity.ok(itemDTO);
     }
     
-    @RequestMapping(value = "/getAll", method = GET)
+    @RequestMapping(value = "/", method = GET)
     public ResponseEntity getAllItems(){
-        List<ItemDTO> objects = itemHandler.getAllItems();
+        List<Item> objects = itemHandler.getAllItems();
         
         return ResponseEntity.ok(objects);
     }
@@ -66,7 +66,7 @@ public class ItemController {
 
     @RequestMapping(value = "/getBySubCategory/{subCategoryName}",method = GET)
     public ResponseEntity getAllBySubCategory(@PathVariable String subCategoryName) {
-        List<Item> result;
+        List<ItemDTO> result;
 
         try {
             result = itemHandler.getAllBySubCategory(subCategoryName);

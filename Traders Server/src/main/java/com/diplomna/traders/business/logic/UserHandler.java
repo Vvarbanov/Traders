@@ -1,7 +1,11 @@
 package com.diplomna.traders.business.logic;
 
+import com.diplomna.traders.dtos.ItemDTO;
 import com.diplomna.traders.dtos.UserDTO;
+import com.diplomna.traders.exceptions.SubCategoryNotFoundException;
 import com.diplomna.traders.exceptions.UserNotFoundException;
+import com.diplomna.traders.models.Item;
+import com.diplomna.traders.models.SubCategory;
 import com.diplomna.traders.models.User;
 import com.diplomna.traders.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +14,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Component
@@ -41,6 +48,7 @@ public class UserHandler implements UserDetailsService{
         
         return result;
     }
+    
     
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

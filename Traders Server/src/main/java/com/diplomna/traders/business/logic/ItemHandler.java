@@ -12,6 +12,7 @@ import com.diplomna.traders.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -73,13 +74,29 @@ public class ItemHandler {
 
         return itemRepository.findAllByUser(user);
     }
-
-    public List<Item> getAllBySubCategory(String subCategoryName) throws SubCategoryNotFoundException {
+    
+    public List<ItemDTO> getAllBySubCategory(String subCategoryName) throws SubCategoryNotFoundException {
         SubCategory subCategory = subCategoryRepository.findByName(subCategoryName);
-
+        
+        List<ItemDTO> result = new ArrayList<>();
+        
         if (subCategory == null)
             throw new SubCategoryNotFoundException("Invalid subCategory");
-
-        return subCategory.getItems();
+        
+        List<Item> data = subCategory.getItems();
+        
+        for (Item item : data) {
+            ItemDTO itemDTO = new ItemDTO();
+            
+            itemDTO.setName(item.getName());
+            itemDTO.setDescription(item.getDescription());
+            itemDTO.setBasePricePerUnit(item.getBasePricePerUnit());
+            itemDTO.setUser(item.getUser().getUsername());
+            itemDTO.setQuantity(item.getQuantity());
+            
+            result.add(itemDTO);
+        }
+        
+        return result;
     }
 }
