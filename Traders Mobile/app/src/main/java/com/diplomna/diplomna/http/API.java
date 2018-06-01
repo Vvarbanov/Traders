@@ -30,7 +30,7 @@ public interface API {
     Call<List<CategoryDTO>> getAllCategories();
 
     @GET("/users/{username}")
-    Call<UserDTO> getUserByUsername(@Path("userName") String userName);
+    Call<UserDTO> getUserByUsername(@Path("username") String username);
 
     @POST("/users/register")
     Call<Void> register(@Body UserDTO userDTO);
@@ -39,5 +39,5 @@ public interface API {
     Call<List<ItemDTO>> getItemsBySubCategory(@Path("subCategoryName") String subCategoryName);
 
     @GET("/subcategories/{categoryName}")
-    Call<List<SubCategoryDTO>> getAllSubCategoriesByCategory(@Query("categoryName") String categoryName);
+    Call<List<SubCategoryDTO>> getAllSubCategoriesByCategory(@Path("categoryName") String categoryName);
 }

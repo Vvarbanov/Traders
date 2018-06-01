@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.diplomna.diplomna.DTOs.AccountType;
@@ -44,7 +45,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public ImageButton loginButton;
     public Button registerButton;
-    private EditText txtPass, txtUsername;
+    private EditText txtPass, txtEmail;
     private final String TOKEN_PREFIX = "Bearer";
 
     @Inject
@@ -54,19 +55,16 @@ public class LoginActivity extends AppCompatActivity {
         return txtPass.getText().toString().trim();
     }
 
-    public String getUsername() {
-        return txtUsername.getText().toString().trim();
+    public String getEmail() {
+        return txtEmail.getText().toString().trim();
     }
 
-    //get from database user type
-    private AccountType userType;
-
     private boolean validateLogin(String username, String password){
-        if(username == null || username.trim().length() == 0){
+        if(username.equalsIgnoreCase("") || username.trim().length() == 0){
             Toast.makeText(this, "Username is required", Toast.LENGTH_SHORT).show();
             return false;
         }
-        if(password == null || password.trim().length() == 0){
+        if(password.equalsIgnoreCase("") || password.trim().length() == 0){
             Toast.makeText(this, "Password is required", Toast.LENGTH_SHORT).show();
             return false;
         }
@@ -74,12 +72,11 @@ public class LoginActivity extends AppCompatActivity {
         return true;
     }
 
-
     public void init(){
         loginButton = findViewById(R.id.loginButton);
         registerButton = findViewById(R.id.registerButton);
         txtPass = findViewById(R.id.txtPassword);
-        txtUsername = findViewById(R.id.textEmail);
+        txtEmail = findViewById(R.id.textEmail);
 
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,8 +96,6 @@ public class LoginActivity extends AppCompatActivity {
 
         init();
 
-
-
         String userJwtToken = preferences.getString("token", "N/A");
         if(!"N/A".equals(userJwtToken)) {
             userJwtToken=userJwtToken.replace(TOKEN_PREFIX,"");
@@ -113,8 +108,9 @@ public class LoginActivity extends AppCompatActivity {
             Log.d("token", isTokenValid + "");
             Log.d("token", userName);
             if(isTokenValid) {
-                Intent app = new Intent(getApplicationContext(), MainActivityCustomer.class);
+                Intent app = new Intent(getApplicationContext(), RedirectActivity.class);
                 app.putExtra("Username", userName);
+                preferences.edit().putString("username", userName).apply();
                 startActivity(app);
             }
         }
@@ -122,68 +118,35 @@ public class LoginActivity extends AppCompatActivity {
 
     @OnClick(R.id.loginButton)
     public void submit(View view) {
+        Intent intent1 = new Intent(LoginActivity.this, RedirectActivity.class);
+        startActivity(intent1);
         String passString = getPass();
-        String usernameString = getUsername();
+        String emailString = getEmail();
+         if (validateLogin(emailString, passString)) {
+             API service = retrofit.create(API.class);
+             UserDTO user = new UserDTO();
+             user.setPassword(passString);
+             user.setUsername(emailString);
+             service.login(user).enqueue(new Callback<Void>() {
+                 @Override
+                 public void onResponse(Call<Void> call, Response<Void> response) {
+                     if (response.isSuccessful()) {
+                         Log.d("login", response.headers().get(HttpInfo.jwtTokenHeaderName));
+                         String jwtTokenResponse = response.headers().get(HttpInfo.jwtTokenHeaderName);
+                         if (StringUtils.isNotBlank(jwtTokenResponse)) {
+                             preferences.edit().putString("token", jwtTokenResponse).apply();
 
-        preferences.edit().putString("username", usernameString).apply();
+                         }
+                     } else {
+                         Log.d("login", "not successful");
+                     }
+                 }
 
-        API service = retrofit.create(API.class);
-
-        service.getUserByUsername(preferences.getString("username", "N/A")).enqueue(new Callback<UserDTO>() {
-            @Override
-            public void onResponse(Call<UserDTO> call, Response<UserDTO> response) {
-                if(response.isSuccessful()){
-
-                    UserDTO userDTO = response.body();
-                    if (userDTO.getAccountType() != null) {
-                        userType = userDTO.getAccountType();
-                    }else
-                        userType = AccountType.CUSTOMER;
-
-                }else {
-                    Toast.makeText(getApplicationContext(),response.message(),Toast.LENGTH_SHORT).show();
-                    Log.v(this.getClass().getSimpleName(),"response:" + response.message());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<UserDTO> call, Throwable t) {
-                Toast.makeText(getApplicationContext(),t.getMessage(),Toast.LENGTH_SHORT).show();
-                Log.v(this.getClass().getSimpleName(), "error:" + t.getMessage());
-            }
-        });
-
-        UserDTO user = new UserDTO();
-        user.setPassword(passString);
-        user.setUsername(usernameString);
-        service.login(user).enqueue(new Callback<Void>() {
-            @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
-                if(response.isSuccessful()){
-                    Log.d("login",response.headers().get(HttpInfo.jwtTokenHeaderName));
-                    String jwtTokenResponse = response.headers().get(HttpInfo.jwtTokenHeaderName);
-                    if(StringUtils.isNotBlank(jwtTokenResponse)){
-                        preferences.edit().putString("token",jwtTokenResponse).apply();
-
-                    }
-                }else{
-                    Log.d("login","not successful");
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Void> call, Throwable t) {
-                Log.e("Retro",t.getMessage());
-            }
-        });
-        if(validateLogin(usernameString, passString)) {
-            if (userType.equals(AccountType.DEALER)) {
-                Intent intent = new Intent(LoginActivity.this, MainActivityDealer.class);
-                startActivity(intent);
-            } else if (userType.equals(AccountType.CUSTOMER)) {
-                Intent intent = new Intent(LoginActivity.this, MainActivityCustomer.class);
-                startActivity(intent);
-            }
-        }
+                 @Override
+                 public void onFailure(Call<Void> call, Throwable t) {
+                     Log.e("Retro", t.getMessage());
+                 }
+             });
+         }
     }
 }

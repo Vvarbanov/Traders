@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -15,6 +16,9 @@ import com.diplomna.diplomna.DTOs.AccountType;
 import com.diplomna.diplomna.DTOs.UserDTO;
 import com.diplomna.diplomna.R;
 import com.diplomna.diplomna.http.API;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -90,9 +94,11 @@ public class RegisterActivity extends AppCompatActivity {
 
                 UserDTO userDTO = new UserDTO();
 
-                String userType = spnrAccType.getSelectedItem().toString();
-                if(userType.equals("DEALER")) userDTO.setAccountType(AccountType.DEALER);
-                if (userType.equals("CUSTOMER")) userDTO.setAccountType(AccountType.CUSTOMER);
+                String userType = spnrAccType.getSelectedItem().toString().trim();
+                if(userType.equalsIgnoreCase("DEALER")) userDTO.setAccountType(AccountType.DEALER);
+                if (userType.equalsIgnoreCase("CUSTOMER")) userDTO.setAccountType(AccountType.CUSTOMER);
+
+
 
                 userDTO.setEmail(getEmail());
                 userDTO.setPassword(getPassword());
@@ -133,6 +139,15 @@ public class RegisterActivity extends AppCompatActivity {
         txtPasswordConfirm = findViewById(R.id.txtPasswordConfirm);
         txtPhone = findViewById(R.id.txtPhone);
         spnrAccType = findViewById(R.id.spnrAccType);
+
+        List<String> spinnerList = new ArrayList<>();
+        spinnerList.add("Dealer");
+        spinnerList.add("Customer");
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getApplicationContext(),
+                android.R.layout.simple_spinner_item, spinnerList);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnrAccType.setAdapter(adapter);
 
         btnLoginScreen.setOnClickListener(new View.OnClickListener() {
             @Override
